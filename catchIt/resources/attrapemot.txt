@@ -1,0 +1,11 @@
+« Attrape mot » est un jeu inspiré des méthodes d’apprentissage de la lecture rapide proposées par l’A.F.L. , Association Française pour le Lecture (http://www.lecture.org/).
+
+Ce jeu a des vertus éducatives. Il permet d’améliorer la vitesse de lecture du lecteur et donc son efficacité. Il permet aussi d’élargir le champ de lecture de l’oeil en proposant un entrainement avec des mots de plus en plus longs.
+
+Le joueur choisit sa difficulté en choisissant la longueur des mots proposés. Le vocabulaire utilisé est issu de la liste des 1500 mots les plus courants de la langue française selon le ministère de l’éducation nationale (http://eduscol.education.fr/cid47916/liste-des-mots-classee-par-frequence-decroissante.html ).
+
+Pour chaque partie, le joueur utilisera une série de 10 mots tirés au sort dans cette liste. Les mots changeront pour chaque partie.
+
+Le joueur voit pendant une seconde un mot qu’il devra reconnaitre dans la suite de mots proposés. Chaque mot proposé apparait pendant une fraction de seconde (0,5 - 0,25 - 0,2). Lorsqu’on le voit, on tape sur l’écran. 
+
+La machine mémorise le résultat de chaque partie. Elle les affiche dans le tableau de cette page.
