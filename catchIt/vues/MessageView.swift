@@ -13,6 +13,8 @@ class MessageView: UIView {
     var titre: UILabel?
     var message: UILabel?
     
+    var timer:Timer = Timer()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -36,14 +38,14 @@ class MessageView: UIView {
         addSubview(imageView)
         
         
-        titre = UILabel(frame: CGRect(x: 10, y: tailleCote / 4, width: frame.width - 20, height: 30))
+        titre = UILabel(frame: CGRect(x: 10, y: (tailleCote / 4) - 15, width: frame.width - 30, height: 30))
         titre?.textAlignment = .center
         titre?.font = FONT_TITRE
         titre?.textColor = GRIS_TRES_CLAIR
         guard titre != nil else {return}
         addSubview(titre!)
         
-        message = UILabel(frame: CGRect(x: 5, y: tailleCote / 2, width: frame.width - 10, height: 20))
+        message = UILabel(frame: CGRect(x: 10, y: (tailleCote / 2) - 20, width: frame.width - 20, height: 80))
         message?.textAlignment = .center
         message?.numberOfLines = 0
         message?.font = FONT_DE_BASE
@@ -64,6 +66,9 @@ class MessageView: UIView {
     @objc func checkAction(sender: UITapGestureRecognizer){
         self.isHidden = true
     }
+    
+    // Fonctions d'apparition
+    
     
     /*
     // Only override draw() if you perform custom drawing.

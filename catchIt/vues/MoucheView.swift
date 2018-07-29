@@ -12,6 +12,9 @@ class MoucheView: UIView {
 
     var texteLabel : UILabel?
     
+    // Pour régler les temps d'apparition
+    var timer:Timer = Timer()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         miseEnPlace()
@@ -53,6 +56,18 @@ class MoucheView: UIView {
     func setPositionCenter(x:CGFloat, y: CGFloat)  {
         self.center.x = x
         self.center.y = y
+    }
+    
+    // Apparition, disparition
+    func apparaitDurant(second:TimeInterval)  {
+        if self.isHidden {
+            self.isHidden = false
+            timer = Timer.scheduledTimer(timeInterval: second, target: self, selector: #selector(cacheMoi), userInfo: "apparition", repeats: false)
+        }
+    }
+    
+    @objc func cacheMoi(){
+        self.isHidden = true
     }
     /*
     // Only override draw() if you perform custom drawing.

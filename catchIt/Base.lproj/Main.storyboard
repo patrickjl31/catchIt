@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="4re-gU-Pan">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -11,10 +11,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Play View Controller-->
+        <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="PlayViewController" customModule="catchIt" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="catchIt" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -64,8 +64,12 @@
                                     <constraint firstAttribute="width" secondItem="Eu5-sf-4zM" secondAttribute="height" multiplier="1:1" id="rkL-vx-jYH"/>
                                 </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Arrow" translatesAutoresizingMaskIntoConstraints="NO" id="zMy-hf-092">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Arrow" translatesAutoresizingMaskIntoConstraints="NO" id="zMy-hf-092">
                                 <rect key="frame" x="27" y="387" width="196" height="158"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Arrow" translatesAutoresizingMaskIntoConstraints="NO" id="ZXH-yi-Bct">
+                                <rect key="frame" x="87" y="20" width="170" height="175"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -82,14 +86,58 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <connections>
-                        <outlet property="cible" destination="Eu5-sf-4zM" id="YIv-Dk-Jl2"/>
-                        <outlet property="fleche" destination="zMy-hf-092" id="cOg-Al-FoD"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="700" y="4.9475262368815596"/>
+            <point key="canvasLocation" x="698.55072463768124" y="4.8913043478260869"/>
+        </scene>
+        <!--Play View Controller-->
+        <scene sceneID="4Hb-m3-lUp">
+            <objects>
+                <viewController id="4re-gU-Pan" customClass="PlayViewController" customModule="catchIt" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="F6y-q3-oPP">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fod-DL-Fyw" customClass="CibleView" customModule="catchIt" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="322" width="414" height="414"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Fod-DL-Fyw" secondAttribute="height" multiplier="1:1" id="0zl-Vc-Fqd"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XUy-8j-Tum">
+                                <rect key="frame" x="177" y="212" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="KWO-vV-pd8"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="Kt0-qH-lZ1"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="ORd-8k-KrO"/>
+                                    <constraint firstAttribute="width" constant="60" id="vAI-ar-VL3"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="buzzer-2"/>
+                                <connections>
+                                    <action selector="startAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7ms-Dn-lmR"/>
+                                    <action selector="startAction:" destination="4re-gU-Pan" eventType="touchUpInside" id="jbP-BD-dJh"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Fod-DL-Fyw" firstAttribute="top" secondItem="XUy-8j-Tum" secondAttribute="bottom" constant="50" id="457-qJ-1H8"/>
+                            <constraint firstItem="XUy-8j-Tum" firstAttribute="centerX" secondItem="F6y-q3-oPP" secondAttribute="centerX" id="5tY-LS-vaT"/>
+                            <constraint firstItem="Fod-DL-Fyw" firstAttribute="leading" secondItem="oJE-M9-3Dz" secondAttribute="leading" id="FVj-uN-ZGc"/>
+                            <constraint firstItem="oJE-M9-3Dz" firstAttribute="trailing" secondItem="Fod-DL-Fyw" secondAttribute="trailing" id="d79-0x-gSR"/>
+                            <constraint firstItem="oJE-M9-3Dz" firstAttribute="bottom" secondItem="Fod-DL-Fyw" secondAttribute="bottom" id="o0m-Aw-ro3"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="oJE-M9-3Dz"/>
+                    </view>
+                    <connections>
+                        <outlet property="cible" destination="Fod-DL-Fyw" id="97E-oP-0Oq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4GX-gt-ml0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="709" y="662"/>
         </scene>
     </scenes>
     <resources>

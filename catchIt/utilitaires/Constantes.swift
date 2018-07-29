@@ -17,4 +17,9 @@ let BLANC = UIColor.white
 let GRIS_TRES_CLAIR = UIColor(red: 240 / 255, green: 240 / 255, blue: 240 / 255, alpha: 1)
 let GRIS_TRES_FONCE = UIColor(red: 30 / 255, green: 30 / 255, blue: 30 / 255, alpha: 1)
 
+// Nombre de mots parmi lesquels chercher celui qui est cache
+let NOMBRE_MOTS_AFFICHABLES = 20
+
+// nombre d'essai possibles dans une casse au mot
+let NOMBRE_ESSAIS_POSSIBLES = 20
 

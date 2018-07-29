@@ -11,8 +11,16 @@ import Foundation
 
 class GestionFiles {
     var serieCourante:[String] = []
+    var niveauSerie: Int = 3
     
+    // ---------------------
+    func setNiveauSerie(value:Int) {
+        niveauSerie = value
+    }
     
+    func  getNiveau() -> Int {
+        return niveauSerie
+    }
     
     // Ouvrir le fichier JSON des joueurs
     // Le fichier s'appelle "memoire.json"
@@ -88,6 +96,7 @@ class GestionFiles {
     
     
     // outils d'extraction depuis les fichiers
+    // renvoie une liste le longiueur mots extraits de lka série courante
     func listeDeMots(longueur:Int) -> [String] {
         // extrait longueur  mots de la serie courante
         if longueur >= serieCourante.count {return serieCourante}
