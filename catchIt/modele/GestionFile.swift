@@ -91,6 +91,7 @@ class GestionFiles {
         let text = try? String(contentsOfFile: filePath!, encoding: String.Encoding.utf16)
         
         result = text!.components(separatedBy: "\n")
+        serieCourante = result
         return result
     }
     
@@ -99,9 +100,12 @@ class GestionFiles {
     // renvoie une liste le longiueur mots extraits de lka série courante
     func listeDeMots(longueur:Int) -> [String] {
         // extrait longueur  mots de la serie courante
-        if longueur >= serieCourante.count {return serieCourante}
-        if longueur < 1 {return []}
         var result : [String] = []
+        if longueur >= serieCourante.count {
+            result = serieCourante
+            return result}
+        if longueur < 1 {return result}
+        
         
         for _ in 0..<longueur {
             var contained = false

@@ -50,7 +50,7 @@ class CibleView: UIView, AVAudioPlayerDelegate {
         //fleche = UIImageView(frame: CGRect(x: 0, y: 0, width: 200, height: 160))
         
         // On prépare la boite message
-        //messageBox = MessageView(frame: CGRect(x: 0, y: 0, width: frame.width / 2, height: frame.height / 2))
+        //messageBox = MessageView(frame: CGRect(x: 0, y: 0, width: frame.wi@objc dth / 2, height: frame.height / 2))
         // la mouche
         //laMouche = MoucheView(frame: CGRect(x: 0, y: 0, width: 130, height: 80))
         
@@ -61,8 +61,6 @@ class CibleView: UIView, AVAudioPlayerDelegate {
         imageView.clipsToBounds = true
         imageView.image = backImage
         addSubview(imageView)
-        
-        
         
         //messageBox
         
@@ -80,7 +78,7 @@ class CibleView: UIView, AVAudioPlayerDelegate {
         laMouche.isHidden = true
         addSubview(laMouche
         )
-        //fleche = UIImageView(frame: CGRect(x: -100, y: -100, width: 200, height: 160))
+        
         //fleche = UIImageView(frame: CGRect(x: 0, y: 0, width: 200, height: 160))
         fleche.frame.origin = CGPoint(x: -200, y: -200)
         fleche.image = UIImage(named: "Arrow")
@@ -91,6 +89,7 @@ class CibleView: UIView, AVAudioPlayerDelegate {
         
     }
     
+   
     func encocheFleche()  {
         fleche.frame.origin = CGPoint(x: -200, y: -2100)
         fleche.isHidden = true
@@ -98,13 +97,15 @@ class CibleView: UIView, AVAudioPlayerDelegate {
     
     func  decocheFleche() {
         fleche.isHidden = false
-        UIView.animate(withDuration: 1) {
+        jouerSon("Arrow+3")
+        UIView.animate(withDuration: 0.5) {
             let centreX = self.frame.size.width / 2
             let centreY = self.frame.size.height / 2
             self.fleche.frame.origin.x = centreX - self.fleche.frame.height
             self.fleche.frame.origin.y = centreY - self.fleche.frame.width
             print("centre: \(centreX) ou bien \(centreY) pour taille \(self.frame.size)")
         }
+        
     }
     
     func afficheMessage(titre:String, messge:String) {
@@ -114,6 +115,40 @@ class CibleView: UIView, AVAudioPlayerDelegate {
             
         }, completion: nil)
         
+    }
+    // On cache la boite message
+    func hideMessageBox() {
+        messageBox.isHidden = true
+    }
+    // On cache tout sauf la cible
+    func nettoyage()  {
+        encocheFleche()
+        hideMessageBox()
+        cacheMouche()
+    }
+    
+    // Affiche la mouche avec son mot quelque part sur la cible
+    func afficheMouche(titre:String)  {
+        laMouche.setText(value: titre)
+        laMouche.center = positionAleatoire(objet: laMouche.frame)
+        laMouche.isHidden = false
+        
+    }
+    
+    func cacheMouche() {
+        laMouche.isHidden = true
+    }
+    
+    // Propose un point pour positionner le centre de la mouche sur la cible
+    //La mouche ne dépasse pas du cadre
+    func positionAleatoire(objet: CGRect) -> CGPoint {
+        let xMin = objet.width / 2
+        let yMin = objet.height / 2
+        let largeurUtile = self.frame.size.width - objet.width
+        let hauteurUtile = self.frame.size.height - objet.height
+        let xAlea = CGFloat( arc4random_uniform(UInt32(largeurUtile))) + xMin
+        let yAlea = CGFloat( arc4random_uniform(UInt32(hauteurUtile))) + yMin
+        return CGPoint(x: xAlea, y: yAlea)
     }
     /*
     // Only override draw() if you perform custom drawing.

@@ -1,6 +1,7 @@
 //: Playground - noun: a place where people can play
 
 import UIKit
+import Foundation
 
 var str = "Hello, playground"
 
@@ -32,5 +33,10 @@ func listeDeMots(longueur:Int) -> [String] {
 
 listeDeMots(longueur: 5).count
 
+
+
+let rand = CGFloat( arc4random_uniform(UInt32(45)))
+
+print(rand)
 
 

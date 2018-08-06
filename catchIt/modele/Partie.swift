@@ -17,6 +17,7 @@ class Partie  {
     var motATrouver : String = ""
     var motCourantAVoir:String = ""
     var listeCouranteMots:[String] = []
+    var listeReduiteMots:[String] = []
     var level:Int = 3
     
     // cette classe gère les enregistrements et les utilisateurs
@@ -36,21 +37,37 @@ class Partie  {
         listeCouranteMots = files.openwordsList(longueur: niveau)
     }
     
-    
+    // Nouveau mot à trouver
     func nouvellePartie()  {
         if listeCouranteMots.count == 0 {
             listeCouranteMots = files.openwordsList(longueur: level)
         }
         //Préparer une liste de mots à afficher et en extraire le mot à trouver
-        listeCouranteMots = files.listeDeMots(longueur: NOMBRE_MOTS_AFFICHABLES)
-        let objectif = Int(arc4random_uniform(UInt32(listeCouranteMots.count)))
-        motATrouver = listeCouranteMots[objectif]
+        listeReduiteMots = files.listeDeMots(longueur: NOMBRE_MOTS_AFFICHABLES)
+        let objectif = Int(arc4random_uniform(UInt32(listeReduiteMots.count)))
+        motATrouver = listeReduiteMots[objectif]
+        motCourantAVoir = ""
         
     }
     
+    //A chaque fois que l'on présente un mot
     func nouvellePresentation()  {
         nombreDePresentations += 1
         
+    }
+    // Compien de présentations de mots ?
+    func  getNumberPresentations() -> Int {
+        return nombreDePresentations
+    }
+    
+    // Mot attrappé ?
+    func  isCatched() -> Bool {
+        return motATrouver == motCourantAVoir
+    }
+    
+    //Partie termnée ? Si on a trouvé le mot ou si on a présenté NOMBRE_ESSAIS_POSSIBLES mot
+    func isTerminated() -> Bool {
+        return isCatched() || nombreDePresentations >= NOMBRE_ESSAIS_POSSIBLES
     }
     
     // Uitiliaires d'accès aux données
@@ -64,9 +81,15 @@ class Partie  {
     }
     // Tirer un mot au hasard dans la liste pour le présenter
     func setRandomWord() -> String {
-        let objectif = Int(arc4random_uniform(UInt32(listeCouranteMots.count)))
-        motCourantAVoir = listeCouranteMots[objectif]
+        let objectif = Int(arc4random_uniform(UInt32(listeReduiteMots.count)))
+        motCourantAVoir = listeReduiteMots[objectif]
         return motCourantAVoir
+    }
+    // Initialiser l'objectif
+    func  setObjectif()->String  {
+        motATrouver = setRandomWord()
+        motCourantAVoir = ""
+        return motATrouver
     }
     
 }

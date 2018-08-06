@@ -21,6 +21,22 @@ class PlayViewController: UIViewController, AVAudioPlayerDelegate {
     //var fleche:UIImage = UIImage(named: "Arrow")!
     //var vueFleche : UIImageView?
     
+    // variables de service
+    var nombreDeTaps = -1
+    var niveau : vitesseEclair = .lent
+    var recherche = ""
+    var cycleDeJeuEnclanche = false
+    
+    // Pour les test de boucle
+    var repetition = 0
+    // On compte le nombre d'apparitions du mot à chercher
+    var apparitions = 0
+    
+    //timers
+    private var timer1 = Timer()
+    
+    // Le modèle
+    let modele:Partie = Partie()
    
     
     private var soundPlayer: AVAudioPlayer?
@@ -28,7 +44,12 @@ class PlayViewController: UIViewController, AVAudioPlayerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         //cible.miseEnPlace()
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.actionCible))
+        cible.addGestureRecognizer(tapGesture)
+        cible.isUserInteractionEnabled = true
         
+        // Réglages initiaux du modèle
+        modele.setLevel(niveau: 4)
 
         
         
@@ -40,33 +61,103 @@ class PlayViewController: UIViewController, AVAudioPlayerDelegate {
     }
     
     @IBAction func startAction(_ sender: UIButton) {
-        //let f = fleche.frame
-        //let lacible = #imageLiteral(resourceName: "cible").size
+        //On initialise
+        nombreDeTaps = -1
+        repetition = 0
+        apparitions = 0
+        modele.nouvellePartie()
         cible.encocheFleche()
-        cible.afficheMessage(titre: "Attention", messge: "vous allez devoir chasser le mot qui est affiché au tableau ci-dessous")
-        cible.decocheFleche()
-        /*
-        //cible.isHidden = true
-        view.bringSubview(toFront: fleche!)
-        messageBox?.setMessage(titre: "Attention", complement: "le mot que tu vas devoir chasser va apparaitre 1 seconde!")
-        messageBox?.isHidden = false
-        UIView.transition(with: messageBox!, duration: 0.5, options: .transitionFlipFromLeft, animations: {
-            
-        }, completion: nil)
+        //let lacible = #imageLiteral(resourceName: "cible").size
+        recherche = modele.setObjectif()
+        cible.afficheMessage(titre: "Attention", messge: "Chasser le mot ci-dessous : \n \n\(recherche)")
+        cycleDeJeuEnclanche = true
         
-        // On affiche très vite
-        laMouche?.apparaitDurant(second: 1)
+    }
+    
+    //-------------------------
+    // action lors d'une tape sur la cible
+    
+    @objc func actionCible(gesture: UIGestureRecognizer){
+        if gesture.view as? CibleView != nil {
+            if cycleDeJeuEnclanche {
+                if nombreDeTaps < 0 {
+                    presenterMot()
+                }
+                nombreDeTaps += 1
+                if modele.isCatched() {
+                    timer1.invalidate()
+                    partieGagnee()
+                    cycleDeJeuEnclanche = false
+                }
+            }
+            // Au cas où la flèche serait là, on la cache
+            cible.nettoyage()
+            
+        }
+        
+    }
+    
+    func presenterMot()  {
+        let aAfficher = modele.setRandomWord()
+        
+        print("mot cherché : \(recherche)")
+        cycleVolMouche(titre: aAfficher)
+        /*
+        if repetition < 10 {
+            // On affiche mouche, on attend intervalle, on le cache
+            cycleVolMouche(titre: aAfficher)
+            repetition += 1
+            
+        }
         */
     }
     
-   
-    // Mouvement de la flèche
-    func initPosFleche(aDeplacer: UIImageView, versCible: CGRect)-> CGPoint  {
-        // On positionne la flèche sur le cdoin haut gauche de la cible
-        let x = versCible.minX - aDeplacer.frame.width
-        let y = versCible.minY - aDeplacer.frame.height
-        return CGPoint(x: x, y: y)
+    func cycleVolMouche(titre:String)  {
+        cible.cacheMouche()
+        //var timer = Timer()
+        timer1 = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.eclairMouche), userInfo: "compte à rebour lancé...", repeats: true)
     }
+    
+    @objc func eclairMouche() {
+        //cible.cacheMouche()
+        //var timer = Timer()
+        repetition += 1
+        let motAffiche = modele.setRandomWord()
+        if motAffiche == recherche{
+            apparitions += 1
+        }
+        cible.afficheMouche(titre: motAffiche)
+        let timer = Timer.scheduledTimer(timeInterval: vitesseEclair.lent.rawValue, target: self, selector: #selector(self.afficheEclair), userInfo: "compte à rebour lancé...", repeats: false)
+        if repetition > NOMBRE_ESSAIS_POSSIBLES {
+            timer1.invalidate()
+            partiePerdue()
+        }
+    }
+    
+    @objc func afficheEclair(){
+        cible.cacheMouche()
+    }
+    
+    @objc func finAttente(){
+        presenterMot()
+    }
+    @objc func testeMot(){
+        let test = modele.getWordViewed() == modele.getWordSearched()
+        // On choisit le nouveau mot à afficher
+        modele.setRandomWord()
+    }
+    
+    func partieGagnee() {
+        cible.encocheFleche()
+        cible.afficheMessage(titre: "Trouvé !", messge: "Avec juste \(nombreDeTaps) taps\nLmot est apparu \(apparitions) fois")
+        cible.decocheFleche()
+    }
+    func partiePerdue()  {
+        cible.afficheMessage(titre: "Perdu !", messge: "tu as essayé \(nombreDeTaps) taps, mais tu as raté le mot... apparu \(apparitions) fois")
+    }
+ 
+    
+
     
     
     /*
