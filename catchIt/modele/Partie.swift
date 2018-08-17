@@ -21,23 +21,30 @@ class Partie  {
     var level:Int = 3
     
     // cette classe gère les enregistrements et les utilisateurs
-    let files:GestionFiles = GestionFiles()
+    //var files:GestionFiles
     
     // Varialbes de service
     // nombreDePresentations est le nombre de mots présentés dans la partie
     var nombreDePresentations = 0
     
-    init() {
-        
-    }
     
+    init(listeMots:[String], objectif: String) {
+        listeReduiteMots = listeMots
+        motATrouver = objectif
+    }
+ 
+    
+    
+    // Semble inutile. passer directement par GestionFile
+    /*
     func setLevel(niveau:Int)  {
         level = niveau
         files.setNiveauSerie(value: niveau)
         listeCouranteMots = files.openwordsList(longueur: niveau)
     }
-    
+    */
     // Nouveau mot à trouver
+    /*
     func nouvellePartie()  {
         if listeCouranteMots.count == 0 {
             listeCouranteMots = files.openwordsList(longueur: level)
@@ -49,7 +56,7 @@ class Partie  {
         motCourantAVoir = ""
         
     }
-    
+    */
     //A chaque fois que l'on présente un mot
     func nouvellePresentation()  {
         nombreDePresentations += 1

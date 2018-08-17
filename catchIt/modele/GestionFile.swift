@@ -10,9 +10,30 @@ import Foundation
 
 
 class GestionFiles {
+    
+    //let KEY_JOUEUR = "nomJoueur"
+    
     var serieCourante:[String] = []
     var niveauSerie: Int = 3
     
+    var players:[Player] = []
+    var currentPlayer: Player?
+    var nameCurrentPlayer = ""
+    
+    
+    
+    init() {
+        players = openFile()
+        if players.count == 0 {
+            currentPlayer = nil
+        } else {
+            recallPermanentDatas()
+            if let curPlayer = searchPlayer(byName: nameCurrentPlayer) {
+                currentPlayer = curPlayer
+            }
+        }
+        
+    }
     // ---------------------
     func setNiveauSerie(value:Int) {
         niveauSerie = value
@@ -20,6 +41,66 @@ class GestionFiles {
     
     func  getNiveau() -> Int {
         return niveauSerie
+    }
+    
+    func addPlayer(player:Player)  {
+        players.insert(player, at: 0)
+        currentPlayer = player
+        nameCurrentPlayer = player.nom
+        saveFile(joueurs: players)
+        savePermanentData()
+    }
+    
+    func addPartie(part:Resultat, toPlayer:Player)  {
+        toPlayer.ajoutPartie(res: part)
+        saveFile(joueurs: players)
+    }
+    
+    func removePartie(posPart:Int, fromPlayer:Player) {
+        fromPlayer.removePartie(pos: posPart)
+        saveFile(joueurs: players)
+    }
+    
+    func searchPlayer(byName:String) -> Player? {
+        var pos = -1
+        for i in 0..<players.count{
+            if players[i].nom == byName {
+                pos = i
+                return players[i]
+            }
+        }
+        if pos > -1 {
+            return players[pos]
+        }
+        return nil
+    }
+    
+    //Gestion de partie
+    // partieCourante est un cycle de partie : on dispose dans une partie
+    // D'une liste de mots, d'un mot à trouver, et on gère les interactions et la boucle
+    
+    func nouvellePartie() -> Partie {
+        var partie:Partie
+        if serieCourante.count == 0 {
+            serieCourante = openwordsList(longueur: niveauSerie)
+        }
+        let listeReduiteMots = listeDeMots(longueur: NOMBRE_MOTS_AFFICHABLES)
+        let objectif = Int(arc4random_uniform(UInt32(listeReduiteMots.count)))
+        let motATrouver = listeReduiteMots[objectif]
+        let motCourantAVoir = ""
+        partie = Partie(listeMots: listeReduiteMots, objectif: motATrouver)
+        return partie
+    }
+    
+    // Récupére les données courantes dans userdefault
+    func recallPermanentDatas() {
+        if let nom = UserDefaults.standard.object(forKey: KEY_JOUEUR) {
+            nameCurrentPlayer = nom as! String
+        }
+    }
+    
+    func savePermanentData(){
+        UserDefaults.standard.set(nameCurrentPlayer, forKey: KEY_JOUEUR)
     }
     
     // Ouvrir le fichier JSON des joueurs

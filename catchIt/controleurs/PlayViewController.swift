@@ -12,6 +12,12 @@ import  AVFoundation
 
 class PlayViewController: UIViewController, AVAudioPlayerDelegate {
 
+    // la pile centrale pour l'incliner selon le sens
+    
+    // Le modele central passé par segue
+    
+    var gestFile:GestionFiles?
+    
     @IBOutlet weak var cible: CibleView!
     
     
@@ -36,7 +42,8 @@ class PlayViewController: UIViewController, AVAudioPlayerDelegate {
     private var timer1 = Timer()
     
     // Le modèle
-    let modele:Partie = Partie()
+    
+    var modele:Partie?
    
     
     private var soundPlayer: AVAudioPlayer?
@@ -49,8 +56,13 @@ class PlayViewController: UIViewController, AVAudioPlayerDelegate {
         cible.isUserInteractionEnabled = true
         
         // Réglages initiaux du modèle
-        modele.setLevel(niveau: 4)
-
+        if let gf = gestFile {
+            modele = gf.nouvellePartie()
+            //modele.setLevel(niveau: 4)
+            gf.setNiveauSerie(value: 4)
+        }
+        
+        
         
         
     }
@@ -65,10 +77,13 @@ class PlayViewController: UIViewController, AVAudioPlayerDelegate {
         nombreDeTaps = -1
         repetition = 0
         apparitions = 0
-        modele.nouvellePartie()
-        cible.encocheFleche()
-        //let lacible = #imageLiteral(resourceName: "cible").size
-        recherche = modele.setObjectif()
+        if let gf = gestFile {
+            modele = gf.nouvellePartie()
+            cible.encocheFleche()
+            //let lacible = #imageLiteral(resourceName: "cible").size
+            recherche = (modele?.setObjectif())!
+        }
+        
         cible.afficheMessage(titre: "Attention", messge: "Chasser le mot ci-dessous : \n \n\(recherche)")
         cycleDeJeuEnclanche = true
         
@@ -84,7 +99,7 @@ class PlayViewController: UIViewController, AVAudioPlayerDelegate {
                     presenterMot()
                 }
                 nombreDeTaps += 1
-                if modele.isCatched() {
+                if (modele?.isCatched())! {
                     timer1.invalidate()
                     partieGagnee()
                     cycleDeJeuEnclanche = false
@@ -98,10 +113,12 @@ class PlayViewController: UIViewController, AVAudioPlayerDelegate {
     }
     
     func presenterMot()  {
-        let aAfficher = modele.setRandomWord()
+        if let leModele = modele {
+            let aAfficher = leModele.setRandomWord()
+            print("mot cherché : \(recherche)")
+            cycleVolMouche(titre: aAfficher)
+        }
         
-        print("mot cherché : \(recherche)")
-        cycleVolMouche(titre: aAfficher)
         /*
         if repetition < 10 {
             // On affiche mouche, on attend intervalle, on le cache
@@ -122,16 +139,19 @@ class PlayViewController: UIViewController, AVAudioPlayerDelegate {
         //cible.cacheMouche()
         //var timer = Timer()
         repetition += 1
-        let motAffiche = modele.setRandomWord()
-        if motAffiche == recherche{
-            apparitions += 1
+        if let mod = modele{
+            let motAffiche = mod.setRandomWord()
+            if motAffiche == recherche{
+                apparitions += 1
+            }
+            cible.afficheMouche(titre: motAffiche)
+            let timer = Timer.scheduledTimer(timeInterval: vitesseEclair.lent.rawValue, target: self, selector: #selector(self.afficheEclair), userInfo: "compte à rebour lancé...", repeats: false)
+            if repetition > NOMBRE_ESSAIS_POSSIBLES {
+                timer1.invalidate()
+                partiePerdue()
+            }
         }
-        cible.afficheMouche(titre: motAffiche)
-        let timer = Timer.scheduledTimer(timeInterval: vitesseEclair.lent.rawValue, target: self, selector: #selector(self.afficheEclair), userInfo: "compte à rebour lancé...", repeats: false)
-        if repetition > NOMBRE_ESSAIS_POSSIBLES {
-            timer1.invalidate()
-            partiePerdue()
-        }
+        
     }
     
     @objc func afficheEclair(){
@@ -142,9 +162,12 @@ class PlayViewController: UIViewController, AVAudioPlayerDelegate {
         presenterMot()
     }
     @objc func testeMot(){
-        let test = modele.getWordViewed() == modele.getWordSearched()
-        // On choisit le nouveau mot à afficher
-        modele.setRandomWord()
+        if let leModele = modele {
+            let test = leModele.getWordViewed() == leModele.getWordSearched()
+            // On choisit le nouveau mot à afficher
+            leModele.setRandomWord()
+        }
+        
     }
     
     func partieGagnee() {

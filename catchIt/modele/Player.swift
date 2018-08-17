@@ -23,4 +23,16 @@ class Player: Codable {
     init(nom:String) {
         self._nom = nom
     }
+    
+    func ajoutPartie(res:Resultat)  {
+        resultats.insert(res, at: 0)
+    }
+    
+    func removePartie(pos:Int)  {
+        if pos > -1,
+            pos < resultats.count {
+            resultats.remove(at: pos)
+        }
+        
+    }
 }

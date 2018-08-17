@@ -29,6 +29,14 @@ enum vitesseEclair : Double {
     case rapide = 0.2
 }
 
+// Gestion de fichiers
+let KEY_JOUEUR = "nomJoueur"
+
+
 // Emoji
 let directHit = "🎯"
 let redCircle = "🔴"
+
+
+//Les cellules de la table des noms
+let CELL_NOMS = "nameCell"

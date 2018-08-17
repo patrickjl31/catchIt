@@ -10,10 +10,25 @@ import UIKit
 import AVFoundation
 class ViewController: UIViewController , AVAudioPlayerDelegate {
 
+    // la pile centrale
+    @IBOutlet weak var centralStack: UIStackView!
+    @IBOutlet weak var commandStack: UIStackView!
+    
+    // Interface
+    
+    @IBOutlet weak var leverLabel: UILabel!
+    @IBOutlet weak var levelSlider: UISlider!
+    
+    // Variables d"'interface
+    var level = 3
+    var speed : vitesseEclair = .moyen
+    
+    
+    
     @IBOutlet weak var cible: UIImageView!
     
     //@IBOutlet weak var texteAReconnaitre: UITextField!
-    @IBOutlet weak var fleche: UIImageView!
+    //@IBOutlet weak var fleche: UIImageView!
     
     //var fleche:UIImage = UIImage(named: "Arrow")!
     //var vueFleche : UIImageView?
@@ -26,10 +41,18 @@ class ViewController: UIViewController , AVAudioPlayerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let orientation = UIApplication.shared.statusBarOrientation
+        if orientation.isPortrait {
+            centralStack.axis = .vertical
+            commandStack.axis = .horizontal
+        } else {
+            centralStack.axis = .horizontal
+            commandStack.axis = .vertical
+        }
         // Do any additional setup after loading the view.
         //On crée l'image flèche et on la positionne
         //fleche.draw(in: CGRect(x: <#T##Int#>, y: <#T##Int#>, width: <#T##Int#>, height: <#T##Int#>))
-        fleche.isHidden = true
+        //fleche.isHidden = true
         
         // On prépare la boite message
         
@@ -58,26 +81,56 @@ class ViewController: UIViewController , AVAudioPlayerDelegate {
         
     }
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        if UIDevice.current.orientation.isPortrait {
+            centralStack.axis = .vertical
+            commandStack.axis = .horizontal
+        } else {
+            centralStack.axis = .horizontal
+            commandStack.axis = .vertical
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        let orientation = UIApplication.shared.statusBarOrientation
+        if orientation.isPortrait {
+            centralStack.axis = .vertical
+             commandStack.axis = .horizontal
+        } else {
+            centralStack.axis = .horizontal
+            commandStack.axis = .vertical
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
+    //Actions d'interface
+    @IBAction func sliderAction(_ sender: UISlider) {
+        level = Int(sender.value + 0.5)
+        sender.setValue(Float(level), animated: false)
+        leverLabel.text = "Mots de longueur : \(level)"
+    }
+    
+    
     @IBAction func startAction(_ sender: UIButton) {
         //let f = fleche.frame
         //let lacible = #imageLiteral(resourceName: "cible").size
         let cibleO = cible.bounds
-        fleche.frame.origin = initPosFleche(aDeplacer: fleche, versCible: cibleO)
-        fleche.isHidden = false
-        UIView.animate(withDuration: 0.5) {
+        //fleche.frame.origin = initPosFleche(aDeplacer: fleche, versCible: cibleO)
+        //fleche.isHidden = false
+        /*UIView.animate(withDuration: 0.5) {
             let centre = self.cible.center
             self.fleche.frame.origin.x = centre.x - self.fleche.frame.width
             self.fleche.frame.origin.y = centre.y - self.fleche.frame.height
         }
+ */
         jouerSon("Arrow+3")
         
         //cible.isHidden = true
-        view.bringSubview(toFront: fleche!)
+        //view.bringSubview(toFront: fleche!)
         messageBox?.setMessage(titre: "Attention", complement: "le mot que tu vas devoir chasser va apparaitre 1 seconde!")
         messageBox?.isHidden = false
         UIView.transition(with: messageBox!, duration: 0.5, options: .transitionFlipFromLeft, animations: {
