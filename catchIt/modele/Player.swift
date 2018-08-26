@@ -24,6 +24,10 @@ class Player: Codable {
         self._nom = nom
     }
     
+    func incrementScore(){
+        _score += 1
+    }
+    
     func ajoutPartie(res:Resultat)  {
         resultats.insert(res, at: 0)
     }

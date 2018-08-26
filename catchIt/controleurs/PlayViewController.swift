@@ -20,6 +20,8 @@ class PlayViewController: UIViewController, AVAudioPlayerDelegate {
     
     @IBOutlet weak var cible: CibleView!
     
+    @IBOutlet weak var ui_invite: UILabel!
+    @IBOutlet weak var ui_lancement: UILabel!
     
     //@IBOutlet weak var texteAReconnaitre: UITextField!
    
@@ -50,19 +52,38 @@ class PlayViewController: UIViewController, AVAudioPlayerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        
         //cible.miseEnPlace()
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.actionCible))
         cible.addGestureRecognizer(tapGesture)
         cible.isUserInteractionEnabled = true
         
+       
+        
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.titleTextAttributes = [.font: FONT_TITRE as Any, .foregroundColor: GRIS_TRES_CLAIR]
+        self.navigationController?.navigationBar.tintColor = GRIS_TRES_CLAIR
+        self.navigationController?.navigationBar.barTintColor = GRIS_TRES_FONCE
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         // Réglages initiaux du modèle
         if let gf = gestFile {
             modele = gf.nouvellePartie()
             //modele.setLevel(niveau: 4)
             gf.setNiveauSerie(value: 4)
         }
+        ui_lancement.isHidden = true
         
-        
+        //Affichage
+        if let gf = gestFile,
+            let current = gf.currentPlayer{
+            ui_invite.text = "\(current.nom), tape le bumper pour une nouvelle chasse..."
+        }
         
         
     }
@@ -73,6 +94,7 @@ class PlayViewController: UIViewController, AVAudioPlayerDelegate {
     }
     
     @IBAction func startAction(_ sender: UIButton) {
+        timer1.invalidate()
         //On initialise
         nombreDeTaps = -1
         repetition = 0
@@ -83,8 +105,11 @@ class PlayViewController: UIViewController, AVAudioPlayerDelegate {
             //let lacible = #imageLiteral(resourceName: "cible").size
             recherche = (modele?.setObjectif())!
         }
-        
+        //cible.partieGagnee(nombreDeTaps: 3, apparitions: 3)
         cible.afficheMessage(titre: "Attention", messge: "Chasser le mot ci-dessous : \n \n\(recherche)")
+        
+        // on donne l'instruction de lancement
+        ui_lancement.isHidden = false
         cycleDeJeuEnclanche = true
         
     }
@@ -93,20 +118,24 @@ class PlayViewController: UIViewController, AVAudioPlayerDelegate {
     // action lors d'une tape sur la cible
     
     @objc func actionCible(gesture: UIGestureRecognizer){
+        
         if gesture.view as? CibleView != nil {
+            // Au cas où la flèche serait là, on la cache
+            cible.nettoyage()
             if cycleDeJeuEnclanche {
                 if nombreDeTaps < 0 {
+                    ui_lancement.isHidden = true
                     presenterMot()
                 }
                 nombreDeTaps += 1
+                //ui_lancement.isHidden = true
                 if (modele?.isCatched())! {
                     timer1.invalidate()
                     partieGagnee()
                     cycleDeJeuEnclanche = false
                 }
             }
-            // Au cas où la flèche serait là, on la cache
-            cible.nettoyage()
+            
             
         }
         
@@ -144,8 +173,13 @@ class PlayViewController: UIViewController, AVAudioPlayerDelegate {
             if motAffiche == recherche{
                 apparitions += 1
             }
+            var vitesse:vitesseEclair = .lent
+            if let gf = gestFile {
+                vitesse = gf.getVitesse()
+            }
+            //let vitesse = gestFile.
             cible.afficheMouche(titre: motAffiche)
-            let timer = Timer.scheduledTimer(timeInterval: vitesseEclair.lent.rawValue, target: self, selector: #selector(self.afficheEclair), userInfo: "compte à rebour lancé...", repeats: false)
+            let timer = Timer.scheduledTimer(timeInterval: vitesse.rawValue, target: self, selector: #selector(self.afficheEclair), userInfo: "compte à rebour lancé...", repeats: false)
             if repetition > NOMBRE_ESSAIS_POSSIBLES {
                 timer1.invalidate()
                 partiePerdue()
@@ -161,25 +195,47 @@ class PlayViewController: UIViewController, AVAudioPlayerDelegate {
     @objc func finAttente(){
         presenterMot()
     }
+    /*
     @objc func testeMot(){
         if let leModele = modele {
             let test = leModele.getWordViewed() == leModele.getWordSearched()
             // On choisit le nouveau mot à afficher
-            leModele.setRandomWord()
+            _ = leModele.setRandomWord()
         }
         
     }
-    
+    */
     func partieGagnee() {
+        bilan(avecSucces: true)
+        cible.partieGagnee(nombreDeTaps: nombreDeTaps, apparitions: apparitions)
+        /*
         cible.encocheFleche()
-        cible.afficheMessage(titre: "Trouvé !", messge: "Avec juste \(nombreDeTaps) taps\nLmot est apparu \(apparitions) fois")
+        var message = "Avec juste \(nombreDeTaps) tap"
+        if nombreDeTaps > 1 {
+            message += "s"
+        }
+        message += "\nLe mot est apparu \(apparitions) fois"
+        cible.afficheMessage(titre: "Trouvé !", messge: message)
+        print(message)
         cible.decocheFleche()
+ */
     }
     func partiePerdue()  {
+        bilan(avecSucces: false)
+        cible.partiePerdue(nombreDeTaps: nombreDeTaps, apparitions: apparitions)
+        /*
         cible.afficheMessage(titre: "Perdu !", messge: "tu as essayé \(nombreDeTaps) taps, mais tu as raté le mot... apparu \(apparitions) fois")
+ */
     }
  
-    
+    func bilan (avecSucces:Bool)  {
+        guard let niveau = gestFile?.getNiveau() else {return}
+        guard let motcible = modele?.getWordSearched() else {
+            return
+        }
+        let resultat = Resultat(niveau: niveau, motCible: motcible, succes: avecSucces, taps: nombreDeTaps)
+        gestFile?.saveScore(resultat: resultat)
+    }
 
     
     

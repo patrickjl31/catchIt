@@ -15,6 +15,7 @@ class GestionFiles {
     
     var serieCourante:[String] = []
     var niveauSerie: Int = 3
+    var vitesseAffichageEclair:vitesseEclair = .lent
     
     var players:[Player] = []
     var currentPlayer: Player?
@@ -41,6 +42,14 @@ class GestionFiles {
     
     func  getNiveau() -> Int {
         return niveauSerie
+    }
+    
+    func setVitesse(v:vitesseEclair) {
+        vitesseAffichageEclair = v
+    }
+    
+    func getVitesse() -> vitesseEclair {
+        return vitesseAffichageEclair
     }
     
     func addPlayer(player:Player)  {
@@ -87,9 +96,19 @@ class GestionFiles {
         let listeReduiteMots = listeDeMots(longueur: NOMBRE_MOTS_AFFICHABLES)
         let objectif = Int(arc4random_uniform(UInt32(listeReduiteMots.count)))
         let motATrouver = listeReduiteMots[objectif]
-        let motCourantAVoir = ""
+        //let motCourantAVoir = ""
         partie = Partie(listeMots: listeReduiteMots, objectif: motATrouver)
         return partie
+    }
+    
+    //Enregistrer les résultats d'une partie
+    func saveScore(resultat: Resultat) {
+        guard let current = currentPlayer else {return}
+        if resultat.succes {
+            current.incrementScore()
+        }
+        current.ajoutPartie(res: resultat)
+        saveFile(joueurs: players)
     }
     
     // Récupére les données courantes dans userdefault

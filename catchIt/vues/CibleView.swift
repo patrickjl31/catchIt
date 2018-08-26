@@ -91,29 +91,30 @@ class CibleView: UIView, AVAudioPlayerDelegate {
     
    
     func encocheFleche()  {
-        fleche.frame.origin = CGPoint(x: -200, y: -2100)
+        fleche.frame.origin = CGPoint(x: -200, y: -200)
         fleche.isHidden = true
     }
     
     func  decocheFleche() {
         fleche.isHidden = false
         jouerSon("Arrow+3")
+        print("décoche")
+       
         UIView.animate(withDuration: 0.5) {
             let centreX = self.frame.size.width / 2
             let centreY = self.frame.size.height / 2
             self.fleche.frame.origin.x = centreX - self.fleche.frame.height
             self.fleche.frame.origin.y = centreY - self.fleche.frame.width
-            print("centre: \(centreX) ou bien \(centreY) pour taille \(self.frame.size)")
+            print("centre: \(centreX) ou bien \(centreY) pour taille \(self.frame.size), flèche cachée : \(self.fleche.isHidden)")
         }
-        
+ 
     }
     
     func afficheMessage(titre:String, messge:String) {
         messageBox.setMessage(titre: titre, complement: messge)
         messageBox.isHidden = false
-        UIView.transition(with: messageBox, duration: 0.5, options: .transitionFlipFromLeft, animations: {
-            
-        }, completion: nil)
+        //UIView.transition(with: messageBox, duration: 0.5, options: .transitionFlipFromLeft, animations: {}, completion: nil)
+        UIView.transition(with: messageBox, duration: 0.5, options: .transitionFlipFromLeft, animations: {self.messageBox.isHidden = false}, completion: nil)
         
     }
     // On cache la boite message
@@ -157,6 +158,26 @@ class CibleView: UIView, AVAudioPlayerDelegate {
         // Drawing code
     }
     */
+    
+    // Affichage des résultats
+    func partieGagnee(nombreDeTaps: Int, apparitions: Int)  {
+        encocheFleche()
+        print("va décocher")
+        decocheFleche()
+        var message = "Avec juste \(nombreDeTaps) tap"
+        if nombreDeTaps > 1 {
+            message += "s"
+        }
+        message += "\nLe mot est apparu \(apparitions) fois"
+        afficheMessage(titre: "Trouvé !!!", messge: message)
+    
+    }
+    
+    func partiePerdue(nombreDeTaps: Int, apparitions: Int)  {
+        var message = "Tu as essayé \(nombreDeTaps) fois"
+        message += "\nLe mot est apparu \(apparitions) fois"
+        afficheMessage(titre: "Perdu !", messge: message)
+    }
     
     
     //MARK Le son

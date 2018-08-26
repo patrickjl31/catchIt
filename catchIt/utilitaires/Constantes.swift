@@ -13,6 +13,7 @@ let FONT_DE_BASE = UIFont(name: "Chalkduster", size: 15)
 let FONT_TITRE = UIFont(name: "Chalkduster", size: 20)
 
 
+
 let BLANC = UIColor.white
 let GRIS_TRES_CLAIR = UIColor(red: 240 / 255, green: 240 / 255, blue: 240 / 255, alpha: 1)
 let GRIS_TRES_FONCE = UIColor(red: 30 / 255, green: 30 / 255, blue: 30 / 255, alpha: 1)
@@ -40,3 +41,6 @@ let redCircle = "🔴"
 
 //Les cellules de la table des noms
 let CELL_NOMS = "nameCell"
+
+//les controlleurs
+let PLAY = "viewPlay"   //PlayViewController"

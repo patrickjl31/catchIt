@@ -13,7 +13,7 @@ class MessageView: UIView {
     var titre: UILabel?
     var message: UILabel?
     
-    var timer:Timer = Timer()
+    //var timer:Timer = Timer()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -65,6 +65,7 @@ class MessageView: UIView {
     
     @objc func checkAction(sender: UITapGestureRecognizer){
         self.isHidden = true
+        
     }
     
     // Fonctions d'apparition
