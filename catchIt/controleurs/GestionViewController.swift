@@ -8,12 +8,13 @@
 
 import UIKit
 
-class GestionViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UIGestureRecognizerDelegate {
+class GestionViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UIGestureRecognizerDelegate, UIPopoverControllerDelegate {
    
 
     // paramètres globaux
     var baseJeu:GestionFiles = GestionFiles()
     
+    @IBOutlet weak var btnAbout: UIBarButtonItem!
     // Gestion du jeu
     
     @IBOutlet weak var levelLabel: UILabel!
@@ -57,9 +58,12 @@ class GestionViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        /*
         self.navigationController?.navigationBar.titleTextAttributes = [.font: FONT_TITRE as Any, .foregroundColor: GRIS_TRES_CLAIR]
         self.navigationController?.navigationBar.tintColor = GRIS_TRES_CLAIR
         self.navigationController?.navigationBar.barTintColor = GRIS_TRES_FONCE
+        */
         
         //le bouton
         /*
@@ -71,8 +75,9 @@ class GestionViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.navigationItem.rightBarButtonItem = baritem
  */
         //self.navigationItem.rightBarButtonItem?.image = UIImage(named: "blueinfo84")
+        /*
         let button = UIButton.init(type: .custom)
-        button.setImage(UIImage(named: "blueinfo28"), for: .normal)
+        button.setImage(UIImage(named: "Icon-29.png"), for: .normal)
         button.addTarget(self, action: #selector(infoButtonAction), for: .touchUpInside)
         button.frame = CGRect(x: 0, y: 0, width: 28, height: 28)
         //translatesAutoresizingMaskIntoConstraints as false
@@ -80,6 +85,14 @@ class GestionViewController: UIViewController, UITableViewDelegate, UITableViewD
         //button.heightAnchor.constraint(equalToConstant: 51).isActive = true
         let item = UIBarButtonItem(customView: button)
         self.navigationItem.rightBarButtonItem = item
+        */
+        let ballButton = UIButton(type: .system)
+        ballButton.setImage(#imageLiteral(resourceName: "info28").withRenderingMode(.alwaysOriginal), for: .normal)
+        ballButton.frame = CGRect(x: 0, y: 0, width: 44, height: 44)
+        ballButton.addTarget(self, action: #selector(infoButtonAction), for: .touchUpInside)
+        navigationItem.rightBarButtonItems = [UIBarButtonItem(customView: ballButton), btnAbout]
+        
+        //btnAbout.image = UIImage(named: "info28")
         
     }
     
@@ -90,9 +103,20 @@ class GestionViewController: UIViewController, UITableViewDelegate, UITableViewD
         
     }
     @objc func infoButtonAction()  {
-        print("bouton droit")
+        //print("bouton droit")
+        //performSegue(withIdentifier: ABOUT, sender: nil)
+        /*
+        let vc = AboutViewController()
+        vc.modalPresentationStyle = .overCurrentContext
+        present(vc, animated: true, completion: nil)
+        vc.popoverPresentationController?.sourceView = view
+        vc.popoverPresentationController?.sourceRect = CGRect(x: view.frame.maxX - 50, y: view.frame.minY - 50, width: 200, height: 400)
+ */
+        performSegue(withIdentifier: ABOUT, sender: self)
     }
-
+    
+    @IBOutlet weak var infobuttonAction2: UIBarButtonItem!
+    
     //Gestion des paramètres de jeu
     @IBAction func levelSliderAction(_ sender: UISlider) {
         let level = Int(sender.value + 0.5)
@@ -224,7 +248,25 @@ class GestionViewController: UIViewController, UITableViewDelegate, UITableViewD
             let vc = segue.destination as! PlayViewController
             vc.gestFile = baseJeu
         }
+        /* */
+        if segue.identifier == ABOUT{
+            if let vc = segue.destination as? AboutViewController {
+                /*
+                if let pvc = vc.popoverPresentationController {
+                    pvc.delegate = self
+                }
+                //vc.popoverPresentation.delegate = self
+                vc.preferedContentSize = CGS
+ */
+                //vc.modalPresentationStyle = UIModalPresentationStyle.popover
+                //vc.popoverPresentationController?.delegate = self as! UIPopoverPresentationControllerDelegate
+            }
+        }
+        func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
+            return UIModalPresentationStyle.none
+        }
         
+       
         
     }
     

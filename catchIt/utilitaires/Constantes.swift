@@ -44,3 +44,4 @@ let CELL_NOMS = "nameCell"
 
 //les controlleurs
 let PLAY = "viewPlay"   //PlayViewController"
+let ABOUT = "viewAbout"

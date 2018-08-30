@@ -29,6 +29,7 @@
 		2A3DE3D421011D6A00E67E22 /* GestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3DE3D321011D6A00E67E22 /* GestionViewController.swift */; };
 		2A3DE3D62101CA9D00E67E22 /* PlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3DE3D52101CA9D00E67E22 /* PlayViewController.swift */; };
 		2A3DE3D82102526400E67E22 /* Arrow+3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2A3DE3D72102526400E67E22 /* Arrow+3.mp3 */; };
+		2A402D252132AC7600EF0447 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A402D242132AC7600EF0447 /* AboutViewController.swift */; };
 		2A9304962106455700E5C991 /* GestionFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9304952106455700E5C991 /* GestionFile.swift */; };
 		2AEF005E2108E3BD0062ADDC /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEF005D2108E3BD0062ADDC /* MessageView.swift */; };
 		2AEF00612108E4B70062ADDC /* Constantes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEF00602108E4B70062ADDC /* Constantes.swift */; };
@@ -61,6 +62,7 @@
 		2A3DE3D321011D6A00E67E22 /* GestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestionViewController.swift; sourceTree = "<group>"; };
 		2A3DE3D52101CA9D00E67E22 /* PlayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayViewController.swift; sourceTree = "<group>"; };
 		2A3DE3D72102526400E67E22 /* Arrow+3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Arrow+3.mp3"; sourceTree = "<group>"; };
+		2A402D242132AC7600EF0447 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		2A9304952106455700E5C991 /* GestionFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestionFile.swift; sourceTree = "<group>"; };
 		2AEF005D2108E3BD0062ADDC /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
 		2AEF00602108E4B70062ADDC /* Constantes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constantes.swift; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 				2A3DE3AA2100A0EF00E67E22 /* ViewController.swift */,
 				2A3DE3D52101CA9D00E67E22 /* PlayViewController.swift */,
 				2A3DE3D321011D6A00E67E22 /* GestionViewController.swift */,
+				2A402D242132AC7600EF0447 /* AboutViewController.swift */,
 			);
 			path = controleurs;
 			sourceTree = "<group>";
@@ -264,6 +267,7 @@
 				2A0C1F6E21027FC9000E1ED8 /* Player.swift in Sources */,
 				2A9304962106455700E5C991 /* GestionFile.swift in Sources */,
 				2A3DE3A92100A0EF00E67E22 /* AppDelegate.swift in Sources */,
+				2A402D252132AC7600EF0447 /* AboutViewController.swift in Sources */,
 				2A0C1F72210304F0000E1ED8 /* Resultat.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

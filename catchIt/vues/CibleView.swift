@@ -40,7 +40,7 @@ class CibleView: UIView, AVAudioPlayerDelegate {
         
         super.init(coder: aDecoder)
         messageBox.frame.size = CGSize(width: frame.width / 2, height: frame.height / 2)
-       miseEnPlace()
+       //miseEnPlace()
         
     }
     
@@ -56,9 +56,13 @@ class CibleView: UIView, AVAudioPlayerDelegate {
         
         
         let backImage = UIImage(named: "cible")
-        let imageView = UIImageView(frame: self.bounds)
-        imageView.contentMode = .scaleAspectFill
+        let large = self.frame.size.width
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: large, height: large))
+        print("cible : largeur : \(self.frame.width), hauteur =  \(self.frame.height)")
+        print("vue : largeur : \(self.bounds.width), hauteur =  \(self.bounds.height)")
+        imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
+        //imageView.contentMode = .center //UIViewContentMode.center
         imageView.image = backImage
         addSubview(imageView)
         

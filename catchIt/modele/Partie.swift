@@ -16,9 +16,9 @@ class Partie  {
     
     var motATrouver : String = ""
     var motCourantAVoir:String = ""
-    var listeCouranteMots:[String] = []
+    //var listeCouranteMots:[String] = []
     var listeReduiteMots:[String] = []
-    var level:Int = 3
+    //var level:Int = 3
     
     // cette classe gère les enregistrements et les utilisateurs
     //var files:GestionFiles

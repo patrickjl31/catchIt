@@ -54,8 +54,8 @@ class MessageView: UIView {
         addSubview(message!)
         
         // Ajout de la sensibilité au touché pour cacher la boite
-        let gesture = UITapGestureRecognizer(target: self, action: #selector(self.checkAction(sender:)))
-        self.addGestureRecognizer(gesture)
+        //let gesture = UITapGestureRecognizer(target: self, action: #selector(self.checkAction(sender:)))
+        //self.addGestureRecognizer(gesture)
         
     }
     func setMessage(titre:String, complement : String)  {
@@ -64,7 +64,7 @@ class MessageView: UIView {
     }
     
     @objc func checkAction(sender: UITapGestureRecognizer){
-        self.isHidden = true
+        //self.isHidden = true
         
     }
     
