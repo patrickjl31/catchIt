@@ -9,6 +9,7 @@
 import Foundation
 
 class Resultat:Codable{
+    private var _date:Date
     private var _niveau:Int
     private var _motCible: String
     private var _succes: Bool
@@ -28,9 +29,13 @@ class Resultat:Codable{
     var nombreDeTaps : Int {
         return _nombreDeTaps
     }
+    var date:Date {
+        return _date
+    }
     
     
     init (niveau:Int, motCible:String, succes:Bool, taps:Int){
+        self._date = Date()
         self._niveau = niveau
         self._motCible = motCible
         self._succes = succes

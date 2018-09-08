@@ -52,8 +52,8 @@ class PlayViewController: UIViewController, AVAudioPlayerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("play : largeur : \(self.view.frame.width), hauteur =  \(self.view.frame.height)")
-        print("cible dans play : largeur : \(cible.frame.width), hauteur =  \(cible.frame.height)")
+        //print("play : largeur : \(self.view.frame.width), hauteur =  \(self.view.frame.height)")
+        //print("cible dans play : largeur : \(cible.frame.width), hauteur =  \(cible.frame.height)")
         let largeur = min(self.view.frame.width, self.view.frame.height)
         cible.frame.size = CGSize(width: largeur, height: largeur)
         
@@ -67,28 +67,30 @@ class PlayViewController: UIViewController, AVAudioPlayerDelegate {
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        /*
-        self.navigationController?.navigationBar.titleTextAttributes = [.font: FONT_TITRE as Any, .foregroundColor: GRIS_TRES_CLAIR]
-        self.navigationController?.navigationBar.tintColor = GRIS_TRES_CLAIR
-        self.navigationController?.navigationBar.barTintColor = GRIS_TRES_FONCE
-        */
+        self.navigationController?.navigationBar.titleTextAttributes = [.font: FONT_DE_BASE as Any, .foregroundColor: ROUGE]
+        //self.navigationController?.navigationBar.tintColor = GRIS_TRES_CLAIR
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         // Réglages initiaux du modèle
+        /*
         if let gf = gestFile {
-            modele = gf.nouvellePartie()
+            //modele = gf.nouvellePartie()
             //modele.setLevel(niveau: 4)
-            gf.setNiveauSerie(value: 4)
+            //gf.setNiveauSerie(value: 4)
         }
-        ui_lancement.isHidden = true
+ */
+        //ui_lancement.isHidden = true
         
         //Affichage
         if let gf = gestFile,
             let current = gf.currentPlayer{
-            ui_invite.text = "\(current.nom), tape le bumper pour une nouvelle chasse..."
+            //ui_invite.text = "Tape le bumper..."
         }
+        // Affichage des labels
+        affichageLancerChasse()
+        
         cible.miseEnPlace()
         
     }
@@ -104,6 +106,9 @@ class PlayViewController: UIViewController, AVAudioPlayerDelegate {
         nombreDeTaps = -1
         repetition = 0
         apparitions = 0
+        // Affichage des labels
+        affichageChasseEnCours()
+        
         if let gf = gestFile {
             modele = gf.nouvellePartie()
             cible.encocheFleche()
@@ -149,7 +154,7 @@ class PlayViewController: UIViewController, AVAudioPlayerDelegate {
     func presenterMot()  {
         if let leModele = modele {
             let aAfficher = leModele.setRandomWord()
-            print("mot cherché : \(recherche)")
+            //print("mot cherché : \(recherche)")
             cycleVolMouche(titre: aAfficher)
         }
         
@@ -221,7 +226,7 @@ class PlayViewController: UIViewController, AVAudioPlayerDelegate {
         }
         message += "\nLe mot est apparu \(apparitions) fois"
         cible.afficheMessage(titre: "Trouvé !", messge: message)
-        print(message)
+        //print(message)
         cible.decocheFleche()
  */
     }
@@ -238,8 +243,20 @@ class PlayViewController: UIViewController, AVAudioPlayerDelegate {
         guard let motcible = modele?.getWordSearched() else {
             return
         }
+        affichageLancerChasse()
         let resultat = Resultat(niveau: niveau, motCible: motcible, succes: avecSucces, taps: nombreDeTaps)
         gestFile?.saveScore(resultat: resultat)
+    }
+    
+    // Gestion des affichages des labels
+    func affichageLancerChasse(){
+        ui_invite.text = "tape le Bumper..."
+        ui_lancement.text = "pour lancer une chasse"
+    }
+    
+    func affichageChasseEnCours()  {
+        ui_invite.text = "tape la cible..."
+        ui_lancement.text = "quand tu vois le gibier"
     }
 
     

@@ -58,8 +58,8 @@ class CibleView: UIView, AVAudioPlayerDelegate {
         let backImage = UIImage(named: "cible")
         let large = self.frame.size.width
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: large, height: large))
-        print("cible : largeur : \(self.frame.width), hauteur =  \(self.frame.height)")
-        print("vue : largeur : \(self.bounds.width), hauteur =  \(self.bounds.height)")
+        //print("cible : largeur : \(self.frame.width), hauteur =  \(self.frame.height)")
+        //print("vue : largeur : \(self.bounds.width), hauteur =  \(self.bounds.height)")
         imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
         //imageView.contentMode = .center //UIViewContentMode.center
@@ -102,14 +102,14 @@ class CibleView: UIView, AVAudioPlayerDelegate {
     func  decocheFleche() {
         fleche.isHidden = false
         jouerSon("Arrow+3")
-        print("décoche")
+        //print("décoche")
        
         UIView.animate(withDuration: 0.5) {
             let centreX = self.frame.size.width / 2
             let centreY = self.frame.size.height / 2
             self.fleche.frame.origin.x = centreX - self.fleche.frame.height
             self.fleche.frame.origin.y = centreY - self.fleche.frame.width
-            print("centre: \(centreX) ou bien \(centreY) pour taille \(self.frame.size), flèche cachée : \(self.fleche.isHidden)")
+            //print("centre: \(centreX) ou bien \(centreY) pour taille \(self.frame.size), flèche cachée : \(self.fleche.isHidden)")
         }
  
     }
@@ -166,7 +166,7 @@ class CibleView: UIView, AVAudioPlayerDelegate {
     // Affichage des résultats
     func partieGagnee(nombreDeTaps: Int, apparitions: Int)  {
         encocheFleche()
-        print("va décocher")
+        //print("va décocher")
         decocheFleche()
         var message = "Avec juste \(nombreDeTaps) tap"
         if nombreDeTaps > 1 {
@@ -182,6 +182,8 @@ class CibleView: UIView, AVAudioPlayerDelegate {
         message += "\nLe mot est apparu \(apparitions) fois"
         afficheMessage(titre: "Perdu !", messge: message)
     }
+    
+    
     
     
     //MARK Le son

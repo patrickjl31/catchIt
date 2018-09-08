@@ -91,7 +91,7 @@ class GestionFiles {
     func nouvellePartie() -> Partie {
         var partie:Partie
         if serieCourante.count == 0 {
-            serieCourante = openwordsList(longueur: niveauSerie)
+            serieCourante = openwordsList(longueur: getNiveau())
         }
         let listeReduiteMots = listeDeMots(longueur: NOMBRE_MOTS_AFFICHABLES)
         let objectif = Int(arc4random_uniform(UInt32(listeReduiteMots.count)))
@@ -197,7 +197,7 @@ class GestionFiles {
     
     
     // outils d'extraction depuis les fichiers
-    // renvoie une liste le longiueur mots extraits de lka série courante
+    // renvoie une liste le longiueur mots extraits de la série courante
     func listeDeMots(longueur:Int) -> [String] {
         // extrait longueur  mots de la serie courante
         var result : [String] = []
@@ -218,6 +218,8 @@ class GestionFiles {
                 }
             } while !contained
         }
+        // Verif longueur de mot
+        //print("niveau série : \(getNiveau()), longueur mot 1 : \(result[0].count), \(result[0]), \(result[1])")
         return result
     }
     //------------------------

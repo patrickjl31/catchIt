@@ -29,6 +29,8 @@ class GestionViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var labelNamePlayer: UILabel!
     
     @IBOutlet weak var tablePlayers: UITableView!
+    // l'indice du joueur à analyser
+    var joueurASuivre = -1
     
     var namePlayer = ""
     var speed:vitesseEclair = .lent
@@ -59,11 +61,11 @@ class GestionViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        /*
-        self.navigationController?.navigationBar.titleTextAttributes = [.font: FONT_TITRE as Any, .foregroundColor: GRIS_TRES_CLAIR]
-        self.navigationController?.navigationBar.tintColor = GRIS_TRES_CLAIR
-        self.navigationController?.navigationBar.barTintColor = GRIS_TRES_FONCE
-        */
+        
+        self.navigationController?.navigationBar.titleTextAttributes = [.font: FONT_DE_BASE as Any, .foregroundColor: ROUGE]
+        //self.navigationController?.navigationBar.tintColor = GRIS_TRES_CLAIR
+        //self.navigationController?.navigationBar.barTintColor = GRIS_TRES_FONCE
+        
         
         //le bouton
         /*
@@ -92,6 +94,8 @@ class GestionViewController: UIViewController, UITableViewDelegate, UITableViewD
         ballButton.addTarget(self, action: #selector(infoButtonAction), for: .touchUpInside)
         navigationItem.rightBarButtonItems = [UIBarButtonItem(customView: ballButton), btnAbout]
         
+        // On met à jour la table
+        tablePlayers.reloadData()
         //btnAbout.image = UIImage(named: "info28")
         
     }
@@ -118,6 +122,23 @@ class GestionViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var infobuttonAction2: UIBarButtonItem!
     
     //Gestion des paramètres de jeu
+    @IBAction func addPlayer(_ sender: Any) {
+        let alerte = UIAlertController(title: "Nouveau joueur", message: "Quel est son nom ?", preferredStyle: .alert)
+        alerte.addTextField { (champ) in
+            champ.text = ""
+            alerte.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                let cNom = alerte.textFields?[0] as! UITextField
+                if let nom = cNom.text,
+                    nom.count > 0 {
+                    self.miseAJourChampNom(nom: nom)
+                    _ = self.validationNamePlayer(player: nom)
+                }
+                
+            }))
+            
+        }
+        present(alerte, animated: true, completion: nil)
+    }
     @IBAction func levelSliderAction(_ sender: UISlider) {
         let level = Int(sender.value + 0.5)
         sender.setValue(Float(level), animated: true)
@@ -158,6 +179,7 @@ class GestionViewController: UIViewController, UITableViewDelegate, UITableViewD
         default:
             segmentedSpeed.selectedSegmentIndex = 0
         }
+        
     }
     
     @objc func toCatchIt(_ sender: UITapGestureRecognizer) {
@@ -176,6 +198,7 @@ class GestionViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     
     // Gestion des joueurs
+    // Si ce joueur n'existe pas, on le crée
     func validationNamePlayer(player:String) -> Bool {
         var res = false
         if let player = baseJeu.searchPlayer(byName: player) {
@@ -202,6 +225,7 @@ class GestionViewController: UIViewController, UITableViewDelegate, UITableViewD
             //labelNamePlayer.text = "\(namePlayer), c'est toi qui joue..."
             let val = validationNamePlayer(player: name)
             //print("retour validation : \(val), la table a \(baseJeu.players.count) élems")
+            view.endEditing(true)
         }
         return true
     }
@@ -237,6 +261,12 @@ class GestionViewController: UIViewController, UITableViewDelegate, UITableViewD
         return indexPath
     }
     
+    func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+        joueurASuivre = indexPath.row
+        let player = baseJeu.players[indexPath.row]
+        performSegue(withIdentifier: SUIVI, sender: nil)
+    }
+    
     /**/
     // MARK: - Navigation
 
@@ -261,14 +291,23 @@ class GestionViewController: UIViewController, UITableViewDelegate, UITableViewD
                 //vc.modalPresentationStyle = UIModalPresentationStyle.popover
                 //vc.popoverPresentationController?.delegate = self as! UIPopoverPresentationControllerDelegate
             }
-        }
-        func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
-            return UIModalPresentationStyle.none
+            
         }
         
-       
+        if segue.identifier == SUIVI {
+            if let vc = segue.destination as? SuiviJoueurViewController {
+                vc.leJoueur = baseJeu.players[joueurASuivre]
+                //vc.popoverPresentationController?.delegate = self as! UIPopoverPresentationControllerDelegate
+                vc.popoverPresentationController?.sourceView = view
+                vc.popoverPresentationController?.sourceRect = tablePlayers.frame
+                //vc.preferredContentSize = CGRect(x: tablePlayers.frame.minX, y: tablePlayers.frame.minY, width: 0, height: 0)
+            }
+        }
+        
         
     }
-    
+    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
+        return UIModalPresentationStyle.none
+    }
 
 }
