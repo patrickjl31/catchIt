@@ -15,6 +15,7 @@ class SuiviJoueurViewController: UIViewController, UITableViewDelegate, UITableV
     @IBOutlet weak var ui_labelTitre: UILabel!
     
     @IBOutlet weak var joueurTableView: UITableView!
+    @IBOutlet weak var sousTable: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,17 +28,17 @@ class SuiviJoueurViewController: UIViewController, UITableViewDelegate, UITableV
         joueurTableView.delegate = self
         
         
-        /*
+        /**/
         // Décor tableview
-        joueurTableView.layer.masksToBounds = false
-        joueurTableView.layer.borderWidth = 4.0
-        joueurTableView.layer.borderColor = MARRON.cgColor
-        joueurTableView.layer.cornerRadius = 20.0
-        joueurTableView.layer.shadowOpacity = 0.7
-        joueurTableView.layer.shadowRadius = 5.0
-        joueurTableView.layer.shadowOffset = CGSize(width: 3, height: 3)
-        joueurTableView.layer.shadowColor = UIColor.black.cgColor
-        */
+        sousTable.layer.masksToBounds = false
+        sousTable.layer.borderWidth = 4.0
+        sousTable.layer.borderColor = MARRON.cgColor
+        sousTable.layer.cornerRadius = 20.0
+        sousTable.layer.shadowOpacity = 0.7
+        sousTable.layer.shadowRadius = 5.0
+        sousTable.layer.shadowOffset = CGSize(width: 3, height: 3)
+        sousTable.layer.shadowColor = UIColor.black.cgColor
+        
     }
 
     override func didReceiveMemoryWarning() {

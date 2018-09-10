@@ -59,6 +59,14 @@ class GestionFiles {
         saveFile(joueurs: players)
         savePermanentData()
     }
+    func removePlayer(joueur: Player) {
+        if let index = players.index(of: joueur) {
+            //print("index = : \(index)")
+            players.remove(at: index)
+            saveFile(joueurs: players)
+        }
+        
+    }
     
     func addPartie(part:Resultat, toPlayer:Player)  {
         toPlayer.ajoutPartie(res: part)
@@ -129,7 +137,7 @@ class GestionFiles {
         var recall:[Player] = []
         // Récupération depuis un fichier
         //let fileName = "listchronos"$
-        var fileName = "memoire"
+        let fileName = "memoire"
         
         let dir = try? FileManager.default.url(for: .documentDirectory,
                                                in: .userDomainMask, appropriateFor: nil, create: true)

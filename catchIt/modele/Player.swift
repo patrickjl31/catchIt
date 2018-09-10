@@ -8,7 +8,11 @@
 
 import Foundation
 
-class Player: Codable {
+class Player: Codable, Equatable {
+    static func == (lhs: Player, rhs: Player) -> Bool {
+        return lhs._nom == rhs.nom
+    }
+    
     private var _nom : String
     private var _score : Int = 0
     var resultats:[Resultat] = []

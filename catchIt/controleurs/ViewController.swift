@@ -68,7 +68,7 @@ class ViewController: UIViewController , AVAudioPlayerDelegate {
         view.addSubview(messageBox!)
         
         // On perépare la mouche
-        let coteCible = cible.frame.width
+        //let coteCible = cible.frame.width
         laMouche = MoucheView(frame: CGRect(x: 0, y: 0, width: 130, height: 80))
         cible.addSubview(laMouche!)
         // Test de la mouche
@@ -116,17 +116,7 @@ class ViewController: UIViewController , AVAudioPlayerDelegate {
     
     
     @IBAction func startAction(_ sender: UIButton) {
-        //let f = fleche.frame
-        //let lacible = #imageLiteral(resourceName: "cible").size
-        let cibleO = cible.bounds
-        //fleche.frame.origin = initPosFleche(aDeplacer: fleche, versCible: cibleO)
-        //fleche.isHidden = false
-        /*UIView.animate(withDuration: 0.5) {
-            let centre = self.cible.center
-            self.fleche.frame.origin.x = centre.x - self.fleche.frame.width
-            self.fleche.frame.origin.y = centre.y - self.fleche.frame.height
-        }
- */
+       
         jouerSon("Arrow+3")
         
         //cible.isHidden = true

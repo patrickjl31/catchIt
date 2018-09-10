@@ -86,7 +86,6 @@ class PlayViewController: UIViewController, AVAudioPlayerDelegate {
         //Affichage
         if let gf = gestFile,
             let current = gf.currentPlayer{
-            //ui_invite.text = "Tape le bumper..."
         }
         // Affichage des labels
         affichageLancerChasse()

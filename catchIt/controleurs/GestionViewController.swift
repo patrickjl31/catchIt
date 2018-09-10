@@ -127,8 +127,8 @@ class GestionViewController: UIViewController, UITableViewDelegate, UITableViewD
         alerte.addTextField { (champ) in
             champ.text = ""
             alerte.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
-                let cNom = alerte.textFields?[0] as! UITextField
-                if let nom = cNom.text,
+                if let cNom = alerte.textFields?[0], //as! UITextField
+                   let nom = cNom.text,
                     nom.count > 0 {
                     self.miseAJourChampNom(nom: nom)
                     _ = self.validationNamePlayer(player: nom)
@@ -219,12 +219,16 @@ class GestionViewController: UIViewController, UITableViewDelegate, UITableViewD
     // Le textfield du joueur courant
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == nameField,
-            let name = textField.text {
+            let name1 = textField.text
+        {
+            let name2 = name1.trimmingCharacters(in: .whitespacesAndNewlines)
+            let name = name2.replacingOccurrences(of: " ", with: "_")
+            guard name != "" else {return true}
             miseAJourChampNom(nom: name)
             //namePlayer = name
             //labelNamePlayer.text = "\(namePlayer), c'est toi qui joue..."
             let val = validationNamePlayer(player: name)
-            //print("retour validation : \(val), la table a \(baseJeu.players.count) élems")
+            print("retour validation : \(val), la table a \(baseJeu.players.count) élems")
             view.endEditing(true)
         }
         return true
@@ -234,6 +238,10 @@ class GestionViewController: UIViewController, UITableViewDelegate, UITableViewD
         namePlayer = nom
         labelNamePlayer.text = "\(namePlayer), c'est toi qui joue..."
         nameField.text = nom
+    }
+    func blank(text:String) -> Bool {
+        let trimmed = text.trimmingCharacters(in: .whitespacesAndNewlines)
+        return trimmed.isEmpty
     }
     
     // La table des joueurs
@@ -248,7 +256,14 @@ class GestionViewController: UIViewController, UITableViewDelegate, UITableViewD
         let cell = tableView.dequeueReusableCell(withIdentifier: CELL_NOMS, for: indexPath)
         let joueur = baseJeu.players[indexPath.row]
         cell.textLabel?.text = joueur.nom
-        cell.detailTextLabel?.text = "Bilan : \(joueur.score)" //String(joueur.score)
+        
+        var bilan = "\(joueur.score) chasse"
+        
+        if joueur.score > 1 {
+            bilan += "s"
+        }
+ 
+        cell.detailTextLabel?.text = bilan
         //print("\(joueur.nom)")
         return cell
         
@@ -257,14 +272,35 @@ class GestionViewController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         let player = baseJeu.players[indexPath.row]
         miseAJourChampNom(nom: player.nom)
-        validationNamePlayer(player: player.nom)
+        //validationNamePlayer(player: player.nom)
         return indexPath
     }
     
     func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
         joueurASuivre = indexPath.row
-        let player = baseJeu.players[indexPath.row]
+        //let player = baseJeu.players[indexPath.row]
         performSegue(withIdentifier: SUIVI, sender: nil)
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let confirmAlert = UIAlertController(title: "Supprimer ce joueur", message: "Voulez-vous réellement le supprimer ?", preferredStyle: .alert)
+            confirmAlert.addAction(UIAlertAction(title: "Oui", style: .destructive, handler: { (action: UIAlertAction) in
+                //print("Destruction !")
+                self.baseJeu.removePlayer(joueur: self.baseJeu.players[indexPath.row])
+                self.tablePlayers.reloadData()
+            }))
+            confirmAlert.addAction(UIAlertAction(title: "Non", style: .default, handler: { (action: UIAlertAction) in
+                //print("je me dégongle")
+            }))
+            present(confirmAlert, animated: true, completion: nil)
+            //deleter dans gestion files
+            //baseJeu.removePlayer(joueur: baseJeu.players[indexPath.row])
+        }
     }
     
     /**/

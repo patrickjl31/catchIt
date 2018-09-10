@@ -140,7 +140,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3" y="-643"/>
+            <point key="canvasLocation" x="0.0" y="-718"/>
         </scene>
         <!--About View Controller-->
         <scene sceneID="OKy-Ic-05s">
@@ -213,16 +213,20 @@ Catch’It s’inspire d’exercices de lecture rapide, en particuliers ceux pro
                         <rect key="frame" x="0.0" y="0.0" width="300" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KTp-ox-hj6">
+                                <rect key="frame" x="16" y="85" width="268" height="445"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="IMe-k0-Udz">
-                                <rect key="frame" x="16" y="105" width="268" height="405"/>
+                                <rect key="frame" x="20" y="105" width="260" height="405"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="separatorColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellPartie" textLabel="70S-CY-JX3" detailTextLabel="Azs-7a-XLB" style="IBUITableViewCellStyleSubtitle" id="Xec-UV-ad5">
-                                        <rect key="frame" x="0.0" y="28" width="268" height="44"/>
+                                        <rect key="frame" x="0.0" y="28" width="260" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Xec-UV-ad5" id="xP8-Ce-QhL">
-                                            <rect key="frame" x="0.0" y="0.0" width="268" height="43.666666666666664"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="260" height="43.666666666666664"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="70S-CY-JX3">
@@ -266,12 +270,16 @@ Catch’It s’inspire d’exercices de lecture rapide, en particuliers ceux pro
                         <constraints>
                             <constraint firstItem="6Ox-8y-NgD" firstAttribute="leading" secondItem="TnN-BB-A6D" secondAttribute="leading" id="2rb-KJ-wyQ"/>
                             <constraint firstItem="TnN-BB-A6D" firstAttribute="trailing" secondItem="6Ox-8y-NgD" secondAttribute="trailing" id="EwY-aE-PEp"/>
-                            <constraint firstItem="IMe-k0-Udz" firstAttribute="leading" secondItem="TnN-BB-A6D" secondAttribute="leading" constant="16" id="OFB-8K-fK4"/>
+                            <constraint firstItem="IMe-k0-Udz" firstAttribute="leading" secondItem="TnN-BB-A6D" secondAttribute="leading" constant="20" id="OFB-8K-fK4"/>
+                            <constraint firstItem="KTp-ox-hj6" firstAttribute="top" secondItem="6Ox-8y-NgD" secondAttribute="bottom" constant="20" id="OVc-q4-tw5"/>
+                            <constraint firstItem="KTp-ox-hj6" firstAttribute="leading" secondItem="TnN-BB-A6D" secondAttribute="leading" constant="16" id="Ops-vs-ikH"/>
                             <constraint firstItem="IbH-r3-ppc" firstAttribute="leading" secondItem="TnN-BB-A6D" secondAttribute="leading" constant="16" id="RCb-ts-GD7"/>
                             <constraint firstItem="IMe-k0-Udz" firstAttribute="top" secondItem="6Ox-8y-NgD" secondAttribute="bottom" constant="40" id="TwP-Is-X6I"/>
                             <constraint firstAttribute="bottomMargin" secondItem="IbH-r3-ppc" secondAttribute="bottom" constant="20" id="cJc-vE-ZIs"/>
-                            <constraint firstItem="TnN-BB-A6D" firstAttribute="trailing" secondItem="IMe-k0-Udz" secondAttribute="trailing" constant="16" id="jzQ-HM-TVe"/>
+                            <constraint firstItem="TnN-BB-A6D" firstAttribute="trailing" secondItem="IMe-k0-Udz" secondAttribute="trailing" constant="20" id="jzQ-HM-TVe"/>
+                            <constraint firstItem="IbH-r3-ppc" firstAttribute="top" secondItem="KTp-ox-hj6" secondAttribute="bottom" constant="20" id="lOE-rL-RKx"/>
                             <constraint firstItem="TnN-BB-A6D" firstAttribute="trailing" secondItem="IbH-r3-ppc" secondAttribute="trailing" constant="16" id="or0-6k-jOC"/>
+                            <constraint firstItem="TnN-BB-A6D" firstAttribute="trailing" secondItem="KTp-ox-hj6" secondAttribute="trailing" constant="16" id="sx3-aH-fi9"/>
                             <constraint firstItem="IbH-r3-ppc" firstAttribute="top" secondItem="IMe-k0-Udz" secondAttribute="bottom" constant="40" id="wI2-W6-b2k"/>
                             <constraint firstItem="6Ox-8y-NgD" firstAttribute="top" secondItem="TnN-BB-A6D" secondAttribute="top" id="yye-8T-rtq"/>
                         </constraints>
@@ -281,12 +289,13 @@ Catch’It s’inspire d’exercices de lecture rapide, en particuliers ceux pro
                     <size key="freeformSize" width="300" height="600"/>
                     <connections>
                         <outlet property="joueurTableView" destination="IMe-k0-Udz" id="nLF-2V-LF0"/>
+                        <outlet property="sousTable" destination="KTp-ox-hj6" id="2yj-iU-BF3"/>
                         <outlet property="ui_labelTitre" destination="6Ox-8y-NgD" id="hCl-74-sS6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MBd-w0-zEM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1573.913043478261" y="155.70652173913044"/>
+            <point key="canvasLocation" x="1533" y="223"/>
         </scene>
         <!--Catch'It... Attrape les mots...-->
         <scene sceneID="LVH-FK-aKN">
@@ -299,11 +308,11 @@ Catch’It s’inspire d’exercices de lecture rapide, en particuliers ceux pro
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="catchit5" translatesAutoresizingMaskIntoConstraints="NO" id="i6i-Vo-rIV">
                                 <rect key="frame" x="8" y="235" width="398" height="132.66666666666663"/>
                             </imageView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="AID-ej-Dck">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="AID-ej-Dck">
                                 <rect key="frame" x="199" y="421.66666666666674" width="207" height="294.33333333333326"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="detailDisclosureButton" indentationWidth="10" reuseIdentifier="nameCell" textLabel="4vh-3b-bU3" detailTextLabel="aox-dp-pTm" style="IBUITableViewCellStyleValue1" id="6CV-Cb-XE4">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="detailDisclosureButton" indentationWidth="10" reuseIdentifier="nameCell" textLabel="4vh-3b-bU3" detailTextLabel="aox-dp-pTm" style="IBUITableViewCellStyleSubtitle" id="6CV-Cb-XE4">
                                         <rect key="frame" x="0.0" y="28" width="207" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6CV-Cb-XE4" id="fCE-He-2cz">
@@ -311,16 +320,16 @@ Catch’It s’inspire d’exercices de lecture rapide, en particuliers ceux pro
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4vh-3b-bU3">
-                                                    <rect key="frame" x="16.000000000000004" y="11.999999999999998" width="33.333333333333336" height="20.333333333333332"/>
+                                                    <rect key="frame" x="16.000000000000004" y="5" width="33.333333333333336" height="20.333333333333332"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="aox-dp-pTm">
-                                                    <rect key="frame" x="95" y="11.999999999999998" width="44" height="20.333333333333332"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="aox-dp-pTm">
+                                                    <rect key="frame" x="15.999999999999996" y="25.333333333333332" width="32.666666666666664" height="14.333333333333334"/>
                                                     <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -399,9 +408,9 @@ Catch’It s’inspire d’exercices de lecture rapide, en particuliers ceux pro
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Qui va jouer ?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lFJ-ia-7rj">
-                                <rect key="frame" x="16" y="421.66666666666669" width="153" height="20.333333333333314"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <rect key="frame" x="16" y="421.66666666666669" width="153" height="66"/>
+                                <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="26"/>
+                                <color key="textColor" red="0.92014357219999998" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
