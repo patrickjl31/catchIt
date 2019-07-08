@@ -11,6 +11,9 @@ import  AVFoundation
 
 class CibleView: UIView, AVAudioPlayerDelegate {
 
+    let backImage = UIImage(named: "cible")
+    let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 400, height: 400))
+    
     var fleche: UIImageView
     var laMouche:MoucheView
     var messageBox:MessageView
@@ -55,12 +58,15 @@ class CibleView: UIView, AVAudioPlayerDelegate {
         //laMouche = MoucheView(frame: CGRect(x: 0, y: 0, width: 130, height: 80))
         
         
-        let backImage = UIImage(named: "cible")
+        
         let large = self.frame.size.width
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: large, height: large))
+        //let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: large, height: large))
+        //let imageView = UIImageView(image: backImage)
+        imageView.image = backImage
+        imageView.frame = CGRect(x: 0, y: 0, width: large, height: large)
         //print("cible : largeur : \(self.frame.width), hauteur =  \(self.frame.height)")
         //print("vue : largeur : \(self.bounds.width), hauteur =  \(self.bounds.height)")
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleToFill
         imageView.clipsToBounds = true
         //imageView.contentMode = .center //UIViewContentMode.center
         imageView.image = backImage
@@ -85,7 +91,7 @@ class CibleView: UIView, AVAudioPlayerDelegate {
         
         //fleche = UIImageView(frame: CGRect(x: 0, y: 0, width: 200, height: 160))
         fleche.frame.origin = CGPoint(x: -200, y: -200)
-        fleche.image = UIImage(named: "Arrow")
+        fleche.image = UIImage(named: "flech")//fleche.image = UIImage(named: "Arrow")
         fleche.contentMode = .scaleToFill
         fleche.clipsToBounds = false
         fleche.isHidden = true
@@ -104,6 +110,7 @@ class CibleView: UIView, AVAudioPlayerDelegate {
         jouerSon("Arrow+3")
         //print("décoche")
        
+        // Animation de la flêche
         UIView.animate(withDuration: 0.5) {
             let centreX = self.frame.size.width / 2
             let centreY = self.frame.size.height / 2

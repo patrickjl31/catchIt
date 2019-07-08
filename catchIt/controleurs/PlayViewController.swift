@@ -5,6 +5,15 @@
 //  Created by patrick lanneau on 20/07/2018.
 //  Copyright © 2018 patrick lanneau. All rights reserved.
 //
+//
+// Notes pour l'animation
+//Pour lancer les animations : self.view.layoutIfNeeded()
+//
+// On prépare les animations, puis :
+// UIView.animate(withDuration: 1, animations: {
+//      self.view.layoutIfNeeded()
+// })
+
 
 import UIKit
 
@@ -23,6 +32,7 @@ class PlayViewController: UIViewController, AVAudioPlayerDelegate {
     @IBOutlet weak var ui_invite: UILabel!
     @IBOutlet weak var ui_lancement: UILabel!
     
+    @IBOutlet weak var pileG: UIStackView!
     //@IBOutlet weak var texteAReconnaitre: UITextField!
    
     
@@ -91,6 +101,32 @@ class PlayViewController: UIViewController, AVAudioPlayerDelegate {
         affichageLancerChasse()
         
         cible.miseEnPlace()
+        
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        
+        if UIDevice.current.orientation.isPortrait {
+            pileG.axis = .vertical
+        } else {
+            pileG.axis = .horizontal
+        }
+        // après la rotation
+        coordinator.animate(alongsideTransition: { (_) in
+            //let largeur = min(self.view.frame.width, self.view.frame.height)
+            //let largeur = view.safeAreaInsets.
+            let slargeur = size.width - self.view.safeAreaInsets.left - self.view.safeAreaInsets.right
+            let shauteur = size.height - self.view.safeAreaInsets.top - self.view.safeAreaInsets.bottom
+            //let largeur = self.pileG.frame.size.width
+            //let hauteur = self.pileG.frame.size.height
+            //let tailleCible = min(largeur, hauteur)
+            let sizeTailleCible = min(slargeur, shauteur)
+            self.cible.frame.size = CGSize(width: sizeTailleCible, height: sizeTailleCible)
+            self.cible.imageView.frame = CGRect(x: 0, y: 0, width: sizeTailleCible, height: sizeTailleCible)
+            //print("Size = \(size.width) de large")
+            //print("Pile : \(self.pileG.bounds), cible : \(sizeTailleCible)")
+        }, completion: nil)
         
     }
 
@@ -188,7 +224,7 @@ class PlayViewController: UIViewController, AVAudioPlayerDelegate {
             }
             //let vitesse = gestFile.
             cible.afficheMouche(titre: motAffiche)
-            let timer = Timer.scheduledTimer(timeInterval: vitesse.rawValue, target: self, selector: #selector(self.afficheEclair), userInfo: "compte à rebour lancé...", repeats: false)
+            _ = Timer.scheduledTimer(timeInterval: vitesse.rawValue, target: self, selector: #selector(self.afficheEclair), userInfo: "compte à rebour lancé...", repeats: false)
             if repetition > NOMBRE_ESSAIS_POSSIBLES {
                 timer1.invalidate()
                 partiePerdue()

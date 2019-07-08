@@ -32,6 +32,7 @@
 		2A402D252132AC7600EF0447 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A402D242132AC7600EF0447 /* AboutViewController.swift */; };
 		2A9304962106455700E5C991 /* GestionFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9304952106455700E5C991 /* GestionFile.swift */; };
 		2AB3EE292139681C00657BE6 /* SuiviJoueurViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB3EE282139681C00657BE6 /* SuiviJoueurViewController.swift */; };
+		2AE0B50D22BBAF0A007723B7 /* flech.png in Resources */ = {isa = PBXBuildFile; fileRef = 2AE0B50C22BBAF0A007723B7 /* flech.png */; };
 		2AEF005E2108E3BD0062ADDC /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEF005D2108E3BD0062ADDC /* MessageView.swift */; };
 		2AEF00612108E4B70062ADDC /* Constantes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEF00602108E4B70062ADDC /* Constantes.swift */; };
 		2AEF0063210A21320062ADDC /* MoucheView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEF0062210A21320062ADDC /* MoucheView.swift */; };
@@ -66,6 +67,7 @@
 		2A402D242132AC7600EF0447 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		2A9304952106455700E5C991 /* GestionFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestionFile.swift; sourceTree = "<group>"; };
 		2AB3EE282139681C00657BE6 /* SuiviJoueurViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuiviJoueurViewController.swift; sourceTree = "<group>"; };
+		2AE0B50C22BBAF0A007723B7 /* flech.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flech.png; sourceTree = "<group>"; };
 		2AEF005D2108E3BD0062ADDC /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
 		2AEF00602108E4B70062ADDC /* Constantes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constantes.swift; sourceTree = "<group>"; };
 		2AEF0062210A21320062ADDC /* MoucheView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoucheView.swift; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 				2A3DE3C72100A15F00E67E22 /* motsde10.txt */,
 				2A3DE3BF2100A15F00E67E22 /* motsde11.txt */,
 				2A3DE3C22100A15F00E67E22 /* motsde12.txt */,
+				2AE0B50C22BBAF0A007723B7 /* flech.png */,
 				2A3DE3D72102526400E67E22 /* Arrow+3.mp3 */,
 			);
 			path = resources;
@@ -248,6 +251,7 @@
 				2A3DE3D82102526400E67E22 /* Arrow+3.mp3 in Resources */,
 				2A3DE3D02100A15F00E67E22 /* motsde10.txt in Resources */,
 				2A3DE3CF2100A15F00E67E22 /* motsde5.txt in Resources */,
+				2AE0B50D22BBAF0A007723B7 /* flech.png in Resources */,
 				2A3DE3AE2100A0EF00E67E22 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -419,6 +423,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = LL9TBU2D9X;
 				INFOPLIST_FILE = catchIt/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -437,6 +442,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = LL9TBU2D9X;
 				INFOPLIST_FILE = catchIt/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
