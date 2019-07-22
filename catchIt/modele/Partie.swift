@@ -34,29 +34,6 @@ class Partie  {
     }
  
     
-    
-    // Semble inutile. passer directement par GestionFile
-    /*
-    func setLevel(niveau:Int)  {
-        level = niveau
-        files.setNiveauSerie(value: niveau)
-        listeCouranteMots = files.openwordsList(longueur: niveau)
-    }
-    */
-    // Nouveau mot à trouver
-    /*
-    func nouvellePartie()  {
-        if listeCouranteMots.count == 0 {
-            listeCouranteMots = files.openwordsList(longueur: level)
-        }
-        //Préparer une liste de mots à afficher et en extraire le mot à trouver
-        listeReduiteMots = files.listeDeMots(longueur: NOMBRE_MOTS_AFFICHABLES)
-        let objectif = Int(arc4random_uniform(UInt32(listeReduiteMots.count)))
-        motATrouver = listeReduiteMots[objectif]
-        motCourantAVoir = ""
-        
-    }
-    */
     //A chaque fois que l'on présente un mot
     func nouvellePresentation()  {
         nombreDePresentations += 1

@@ -111,7 +111,7 @@ class ViewController: UIViewController , AVAudioPlayerDelegate {
     @IBAction func sliderAction(_ sender: UISlider) {
         level = Int(sender.value + 0.5)
         sender.setValue(Float(level), animated: false)
-        leverLabel.text = "Mots de longueur : \(level)"
+        leverLabel.text = NSLocalizedString("Words of length", comment: "Mots de longueur") + " : \(level)"
     }
     
     
@@ -121,7 +121,7 @@ class ViewController: UIViewController , AVAudioPlayerDelegate {
         
         //cible.isHidden = true
         //view.bringSubview(toFront: fleche!)
-        messageBox?.setMessage(titre: "Attention", complement: "le mot que tu vas devoir chasser va apparaitre 1 seconde!")
+        messageBox?.setMessage(titre: NSLocalizedString("Warning", comment: "Attention"), complement: NSLocalizedString("the word you will have to hunt will appear 1 second!", comment: "le mot que tu vas devoir chasser va apparaitre 1 seconde!"))
         messageBox?.isHidden = false
         UIView.transition(with: messageBox!, duration: 0.5, options: .transitionFlipFromLeft, animations: {
             

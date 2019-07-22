@@ -22,16 +22,19 @@ class CibleView: UIView, AVAudioPlayerDelegate {
     private var soundPlayer: AVAudioPlayer?
     
     override init(frame: CGRect) {
+        
         //On initialise les images objets
         fleche = UIImageView(frame: CGRect(x: 0, y: 0, width: 200, height: 200))
+        
+        
         // On prépare la boite message
         messageBox = MessageView(frame: CGRect(x: 0, y: 0, width: frame.width / 2, height: frame.height / 2))
         // la mouche
         laMouche = MoucheView(frame: CGRect(x: 0, y: 0, width: 130, height: 80))
-        super.init(frame: frame)
-        
        
-        miseEnPlace()
+        
+        super.init(frame: frame)
+         miseEnPlace()
     }
     required init?(coder aDecoder: NSCoder) {
         //On initialise les images objets
@@ -76,7 +79,9 @@ class CibleView: UIView, AVAudioPlayerDelegate {
         
         messageBox.frame.size = CGSize(width: self.frame.width / 2, height: self.frame.height / 2)
         // on la centre
-        messageBox.center = CGPoint(x: self.frame.width / 2, y: self.frame.height / 2)
+        //messageBox.center = CGPoint(x: self.frame.width / 2, y: self.frame.height / 2)
+        
+        //messageBox.center = self.center
         messageBox.miseEnPlace()
         messageBox.isHidden = true
         addSubview(messageBox)
@@ -97,6 +102,29 @@ class CibleView: UIView, AVAudioPlayerDelegate {
         fleche.isHidden = true
         addSubview(fleche)
         
+    }
+    
+    func miseAJourTaille() {
+        
+        imageView.frame.size = self.frame.size
+        
+//        let largeur = imageView.frame.width
+//        let decalageX = (largeur / 4)
+//        let hauteur = imageView.frame.height
+//        let decalageY = hauteur / 4
+        
+//        if let haut = UIApplication.shared.keyWindow?.frame.height,
+//            let larg = UIApplication.shared.keyWindow?.frame.width{
+//            let decalageSh = min(haut,larg) / 4
+//            messageBox.frame.origin = CGPoint(x: decalageSh, y: decalageSh)
+//        } else {
+//           messageBox.frame.origin = CGPoint(x: decalageX, y: decalageY)
+//        }
+        
+        messageBox.center = imageView.center
+        
+//        print("messageBox centre : \(messageBox.center), large =  \(messageBox.frame.width), haut =  \(messageBox.frame.height)")
+//        print("imageView centre : \(imageView.center), large =  \(imageView.frame.width), haut =  \(imageView.frame.height)")
     }
     
    
@@ -175,19 +203,32 @@ class CibleView: UIView, AVAudioPlayerDelegate {
         encocheFleche()
         //print("va décocher")
         decocheFleche()
-        var message = "Avec juste \(nombreDeTaps) tap"
-        if nombreDeTaps > 1 {
-            message += "s"
-        }
-        message += "\nLe mot est apparu \(apparitions) fois"
-        afficheMessage(titre: "Trouvé !!!", messge: message)
+        let message = texteApparition(combienTaps: nombreDeTaps, sur: apparitions)
+        let leTitre = NSLocalizedString("Find !", comment: "Trouvé !")
+        afficheMessage(titre: leTitre, messge: message)
     
     }
     
+    func texteApparition(combienTaps : Int, sur:Int) -> String {
+        var message = NSLocalizedString("With ", comment: "Avec ") + "\(combienTaps) tap"
+        if combienTaps > 1 {
+            message += "s"
+        }
+        message += "\n"
+        message += NSLocalizedString("The word appeared", comment: "Le mot est apparu")
+        
+        if sur == 1 {
+            message += NSLocalizedString(" once", comment: " une fois")
+        } else {
+            message += " \(sur)" + NSLocalizedString(" times", comment: " fois")
+        }
+        return message
+    }
+    
     func partiePerdue(nombreDeTaps: Int, apparitions: Int)  {
-        var message = "Tu as essayé \(nombreDeTaps) fois"
-        message += "\nLe mot est apparu \(apparitions) fois"
-        afficheMessage(titre: "Perdu !", messge: message)
+        let message = texteApparition(combienTaps: nombreDeTaps, sur: apparitions)
+        let leTitre = NSLocalizedString("Game lost !", comment: "Partie perdue !")
+        afficheMessage(titre: leTitre, messge: message)
     }
     
     

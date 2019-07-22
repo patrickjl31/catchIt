@@ -32,6 +32,11 @@ enum vitesseEclair : Double {
     case rapide = 0.2
 }
 
+enum Langue : String {
+    case Eng = "English"
+    case Fr = "French"
+}
+
 // Gestion de fichiers
 let KEY_JOUEUR = "nomJoueur"
 

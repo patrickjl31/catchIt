@@ -14,6 +14,11 @@ class GestionViewController: UIViewController, UITableViewDelegate, UITableViewD
     // paramètres globaux
     var baseJeu:GestionFiles = GestionFiles()
     
+    // les piles
+    @IBOutlet weak var pileGenerale: UIStackView!
+    @IBOutlet weak var pileReglages: UIStackView!
+    @IBOutlet weak var pileTables: UIStackView!
+    
     @IBOutlet weak var btnAbout: UIBarButtonItem!
     // Gestion du jeu
     
@@ -22,11 +27,13 @@ class GestionViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var levelSlider: UISlider!
     @IBOutlet weak var objectCatchIt: UIImageView!
     @IBOutlet weak var segmentedSpeed: UISegmentedControl!
+    @IBOutlet weak var choixLangue: UISegmentedControl!
     
     // Gestion des joueurs
     
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var labelNamePlayer: UILabel!
+    @IBOutlet weak var infobuttonAction2: UIBarButtonItem!
     
     @IBOutlet weak var tablePlayers: UITableView!
     // l'indice du joueur à analyser
@@ -34,6 +41,7 @@ class GestionViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     var namePlayer = ""
     var speed:vitesseEclair = .lent
+    var idiome : Langue = .Fr
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +50,18 @@ class GestionViewController: UIViewController, UITableViewDelegate, UITableViewD
         // Ouvrir la base modele
         //baseJeu = GestionFiles()
         
+        // La langue
+        if Locale.current.languageCode == "en" {
+            idiome = .Eng
+        } else {
+            idiome = .Fr
+        }
+        //On gère l'orientation
+        if UIDevice.current.orientation.isPortrait {
+            pileGenerale.axis = .vertical
+        } else {
+            pileGenerale.axis = .horizontal
+        }
         
         // La table
         tablePlayers.delegate = self
@@ -96,11 +116,22 @@ class GestionViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         // On met à jour la table
         tablePlayers.reloadData()
-        //btnAbout.image = UIImage(named: "info28")
+        //On gère l'orientation
+        if UIDevice.current.orientation.isPortrait {
+            pileGenerale.axis = .vertical
+        } else {
+            pileGenerale.axis = .horizontal
+        }
         
     }
     
-
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        if UIDevice.current.orientation.isPortrait {
+            pileGenerale.axis = .vertical
+        } else {
+            pileGenerale.axis = .horizontal
+        }
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -119,7 +150,6 @@ class GestionViewController: UIViewController, UITableViewDelegate, UITableViewD
         performSegue(withIdentifier: ABOUT, sender: self)
     }
     
-    @IBOutlet weak var infobuttonAction2: UIBarButtonItem!
     
     //Gestion des paramètres de jeu
     @IBAction func addPlayer(_ sender: Any) {
@@ -129,7 +159,7 @@ class GestionViewController: UIViewController, UITableViewDelegate, UITableViewD
             alerte.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
                 if let cNom = alerte.textFields?[0], //as! UITextField
                    let nom = cNom.text,
-                    nom.count > 0 {
+                    nom.count > 0{
                     self.miseAJourChampNom(nom: nom)
                     _ = self.validationNamePlayer(player: nom)
                 }
@@ -162,22 +192,43 @@ class GestionViewController: UIViewController, UITableViewDelegate, UITableViewD
         baseJeu.setVitesse(v: speed)
         gestionAffichageParametres()
     }
+    @IBAction func choixLangueAction(_ sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 0:
+            idiome = .Fr
+        case 1:
+            idiome = .Eng
+        default:
+            idiome = .Fr
+        }
+        baseJeu.setLanguage(idiome: idiome)
+        gestionAffichageParametres()
+    }
     
     func gestionAffichageParametres() {
         let level = baseJeu.getNiveau()
-        levelLabel.text = "Level : " + "\(level)"
+        
+        levelLabel.text = NSLocalizedString("Level", comment: "Niveau") + " : " + "\(level)"
         levelSlider.value = Float(level)
         let vitesse = baseJeu.getVitesse()
-        speedLabel.text = "Speed : \(vitesse)"
+        speedLabel.text = NSLocalizedString("Speed : ", comment: "Niveau : ") //+ " : \(vitesse)"
         switch vitesse {
         case .lent:
             segmentedSpeed.selectedSegmentIndex = 0
         case .moyen:
             segmentedSpeed.selectedSegmentIndex = 1
         case .rapide:
-            segmentedSpeed.selectedSegmentIndex = 1
+            segmentedSpeed.selectedSegmentIndex = 2
         default:
             segmentedSpeed.selectedSegmentIndex = 0
+        }
+        switch idiome {
+        case .Fr:
+            choixLangue.selectedSegmentIndex = 0
+        case .Eng:
+            choixLangue.selectedSegmentIndex = 1
+        default:
+            choixLangue.selectedSegmentIndex = 0
         }
         
     }
@@ -201,18 +252,18 @@ class GestionViewController: UIViewController, UITableViewDelegate, UITableViewD
     // Si ce joueur n'existe pas, on le crée
     func validationNamePlayer(player:String) -> Bool {
         var res = false
-        if let player = baseJeu.searchPlayer(byName: player) {
-            baseJeu.currentPlayer = player
+        if let playerCourant = baseJeu.searchPlayer(byName: player) {
+            baseJeu.setCurrentPlayer(player: playerCourant)
             tablePlayers.reloadData()
             res = true
         } else {
             let joueur = Player(nom: player)
             baseJeu.addPlayer(player: joueur)
             tablePlayers.reloadData()
-            baseJeu.currentPlayer = joueur
+            baseJeu.setCurrentPlayer(player: joueur)
             res = true
         }
-        
+        namePlayer = player
         return res
     }
     
@@ -227,8 +278,8 @@ class GestionViewController: UIViewController, UITableViewDelegate, UITableViewD
             miseAJourChampNom(nom: name)
             //namePlayer = name
             //labelNamePlayer.text = "\(namePlayer), c'est toi qui joue..."
-            let val = validationNamePlayer(player: name)
-            print("retour validation : \(val), la table a \(baseJeu.players.count) élems")
+            _ = validationNamePlayer(player: name)
+            //print("retour validation : \(val), la table a \(baseJeu.players.count) élems")
             view.endEditing(true)
         }
         return true
@@ -236,7 +287,7 @@ class GestionViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func miseAJourChampNom(nom:String)  {
         namePlayer = nom
-        labelNamePlayer.text = "\(namePlayer), c'est toi qui joue..."
+        labelNamePlayer.text = "\(namePlayer), " + NSLocalizedString("it's your play...", comment: "c'est toi qui joue...") 
         nameField.text = nom
     }
     func blank(text:String) -> Bool {
@@ -257,7 +308,7 @@ class GestionViewController: UIViewController, UITableViewDelegate, UITableViewD
         let joueur = baseJeu.players[indexPath.row]
         cell.textLabel?.text = joueur.nom
         
-        var bilan = "\(joueur.score) chasse"
+        var bilan = "\(joueur.score) " + NSLocalizedString("hunt", comment: "chasse")
         
         if joueur.score > 1 {
             bilan += "s"
@@ -272,7 +323,7 @@ class GestionViewController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         let player = baseJeu.players[indexPath.row]
         miseAJourChampNom(nom: player.nom)
-        //validationNamePlayer(player: player.nom)
+        _ = validationNamePlayer(player: player.nom)
         return indexPath
     }
     
@@ -288,13 +339,13 @@ class GestionViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let confirmAlert = UIAlertController(title: "Supprimer ce joueur", message: "Voulez-vous réellement le supprimer ?", preferredStyle: .alert)
-            confirmAlert.addAction(UIAlertAction(title: "Oui", style: .destructive, handler: { (action: UIAlertAction) in
+            let confirmAlert = UIAlertController(title: NSLocalizedString("Delete player", comment: "Supprimer ce joueur"), message: NSLocalizedString("Do you really want to delete ?", comment: "Voulez-vous réellement le supprimer ?"), preferredStyle: .alert)
+            confirmAlert.addAction(UIAlertAction(title: NSLocalizedString("Yes", comment: "Oui"), style: .destructive, handler: { (action: UIAlertAction) in
                 //print("Destruction !")
                 self.baseJeu.removePlayer(joueur: self.baseJeu.players[indexPath.row])
                 self.tablePlayers.reloadData()
             }))
-            confirmAlert.addAction(UIAlertAction(title: "Non", style: .default, handler: { (action: UIAlertAction) in
+            confirmAlert.addAction(UIAlertAction(title: NSLocalizedString("No", comment: "Non"), style: .default, handler: { (action: UIAlertAction) in
                 //print("je me dégongle")
             }))
             present(confirmAlert, animated: true, completion: nil)

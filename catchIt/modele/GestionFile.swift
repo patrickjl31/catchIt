@@ -16,6 +16,7 @@ class GestionFiles {
     var serieCourante:[String] = []
     var niveauSerie: Int = 3
     var vitesseAffichageEclair:vitesseEclair = .lent
+    var langueCourante:Langue = .Fr
     
     var players:[Player] = []
     var currentPlayer: Player?
@@ -52,6 +53,15 @@ class GestionFiles {
         return vitesseAffichageEclair
     }
     
+    func setLanguage(idiome:Langue) {
+        langueCourante = idiome
+    }
+    
+    func getLanguage() -> Langue {
+        return langueCourante
+    }
+    
+    // Gestion des joueurs
     func addPlayer(player:Player)  {
         players.insert(player, at: 0)
         currentPlayer = player
@@ -65,18 +75,22 @@ class GestionFiles {
             players.remove(at: index)
             saveFile(joueurs: players)
         }
-        
     }
     
-    func addPartie(part:Resultat, toPlayer:Player)  {
-        toPlayer.ajoutPartie(res: part)
-        saveFile(joueurs: players)
+    func setCurrentPlayer(player:Player) {
+        currentPlayer = player
+        nameCurrentPlayer = player.nom
     }
     
-    func removePartie(posPart:Int, fromPlayer:Player) {
-        fromPlayer.removePartie(pos: posPart)
-        saveFile(joueurs: players)
+    func isPlayer(unNom:String)->Bool {
+        for player in players {
+            if player.nom == unNom {
+                return true
+            }
+        }
+        return false
     }
+    
     
     func searchPlayer(byName:String) -> Player? {
         var pos = -1
@@ -92,6 +106,8 @@ class GestionFiles {
         return nil
     }
     
+    
+   
     //Gestion de partie
     // partieCourante est un cycle de partie : on dispose dans une partie
     // D'une liste de mots, d'un mot à trouver, et on gère les interactions et la boucle
@@ -99,7 +115,7 @@ class GestionFiles {
     func nouvellePartie() -> Partie {
         var partie:Partie
         if serieCourante.count == 0 {
-            serieCourante = openwordsList(longueur: getNiveau())
+            serieCourante = openwordsList(longueur: getNiveau(), idiome: getLanguage())
         }
         let listeReduiteMots = listeDeMots(longueur: NOMBRE_MOTS_AFFICHABLES)
         let objectif = Int(arc4random_uniform(UInt32(listeReduiteMots.count)))
@@ -108,6 +124,17 @@ class GestionFiles {
         partie = Partie(listeMots: listeReduiteMots, objectif: motATrouver)
         return partie
     }
+    
+    func addPartie(part:Resultat, toPlayer:Player)  {
+        toPlayer.ajoutPartie(res: part)
+        saveFile(joueurs: players)
+    }
+    
+    func removePartie(posPart:Int, fromPlayer:Player) {
+        fromPlayer.removePartie(pos: posPart)
+        saveFile(joueurs: players)
+    }
+    
     
     //Enregistrer les résultats d'une partie
     func saveScore(resultat: Resultat) {
@@ -192,9 +219,16 @@ class GestionFiles {
     
     //--------------------------
     // Récupérations des listes de mots de longueur L
-    func openwordsList(longueur:Int) -> [String] {
+    func openwordsList(longueur:Int, idiome:Langue) -> [String] {
         var result:[String] = []
-        let nomFichier = "motsde\(longueur)"
+        var prefixe = ""
+        switch idiome {
+        case .Eng:
+            prefixe = "words"
+        case .Fr:
+            prefixe = "motsde"
+        }
+        let nomFichier = "\(prefixe)\(longueur)"
         let filePath = Bundle.main.path(forResource: nomFichier, ofType: ".txt")
         let text = try? String(contentsOfFile: filePath!, encoding: String.Encoding.utf16)
         
@@ -213,7 +247,6 @@ class GestionFiles {
             result = serieCourante
             return result}
         if longueur < 1 {return result}
-        
         
         for _ in 0..<longueur {
             var contained = false

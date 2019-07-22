@@ -27,6 +27,7 @@ class PlayViewController: UIViewController, AVAudioPlayerDelegate {
     
     var gestFile:GestionFiles?
     
+    
     @IBOutlet weak var cible: CibleView!
     
     @IBOutlet weak var ui_invite: UILabel!
@@ -56,17 +57,35 @@ class PlayViewController: UIViewController, AVAudioPlayerDelegate {
     // Le modèle
     
     var modele:Partie?
+    
    
     
     private var soundPlayer: AVAudioPlayer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         //print("play : largeur : \(self.view.frame.width), hauteur =  \(self.view.frame.height)")
         //print("cible dans play : largeur : \(cible.frame.width), hauteur =  \(cible.frame.height)")
-        let largeur = min(self.view.frame.width, self.view.frame.height)
-        cible.frame.size = CGSize(width: largeur, height: largeur)
+        //let largeur = min(self.view.frame.width, self.view.frame.height)
+        //cible.frame.size = CGSize(width: largeur, height: largeur)
+        if UIDevice.current.orientation.isPortrait {
+            pileG.axis = .vertical
+        } else {
+            pileG.axis = .horizontal
+        }
         
+        cible.miseEnPlace()
+        
+        let slargeur = self.view.frame.width - self.view.safeAreaInsets.left - self.view.safeAreaInsets.right
+        let shauteur = self.view.frame.height - self.view.safeAreaInsets.top - self.view.safeAreaInsets.bottom
+        //let largeur = self.view.safeAreaLayoutGuide.width
+        //let hauteur = self.pileG.frame.size.height
+        //let tailleCible = min(largeur, hauteur)
+        let sizeTailleCible = min(slargeur, shauteur)
+        self.cible.frame.size = CGSize(width: sizeTailleCible, height: sizeTailleCible)
+        //self.cible.imageView.frame = CGRect(x: 0, y: 0, width: sizeTailleCible, height: sizeTailleCible)
+        cible.miseAJourTaille()
         //cible.miseEnPlace()
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.actionCible))
         cible.addGestureRecognizer(tapGesture)
@@ -77,6 +96,26 @@ class PlayViewController: UIViewController, AVAudioPlayerDelegate {
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        if let mod = gestFile, let courant = mod.currentPlayer {
+            ui_invite.text = NSLocalizedString("Catch the bumper, ", comment: "Tape le Bumper, ") + "\(courant.nom) !"
+        }
+        
+        // taille de la cible
+        if UIDevice.current.orientation.isPortrait {
+            pileG.axis = .vertical
+        } else {
+            pileG.axis = .horizontal
+        }
+        let slargeur = self.view.frame.width - self.view.safeAreaInsets.left - self.view.safeAreaInsets.right
+        let shauteur = self.view.frame.height - self.view.safeAreaInsets.top - self.view.safeAreaInsets.bottom
+        //let largeur = self.pileG.frame.size.width
+        //let hauteur = self.pileG.frame.size.height
+        //let tailleCible = min(largeur, hauteur)
+        let sizeTailleCible = min(slargeur, shauteur)
+        self.cible.frame.size = CGSize(width: sizeTailleCible, height: sizeTailleCible)
+        //self.cible.imageView.frame = CGRect(x: 0, y: 0, width: sizeTailleCible, height: sizeTailleCible)
+        cible.miseAJourTaille()
+        
         self.navigationController?.navigationBar.titleTextAttributes = [.font: FONT_DE_BASE as Any, .foregroundColor: ROUGE]
         //self.navigationController?.navigationBar.tintColor = GRIS_TRES_CLAIR
     }
@@ -84,23 +123,30 @@ class PlayViewController: UIViewController, AVAudioPlayerDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         // Réglages initiaux du modèle
-        /*
-        if let gf = gestFile {
-            //modele = gf.nouvellePartie()
-            //modele.setLevel(niveau: 4)
-            //gf.setNiveauSerie(value: 4)
-        }
- */
-        //ui_lancement.isHidden = true
         
-        //Affichage
-        if let gf = gestFile,
-            let current = gf.currentPlayer{
-        }
         // Affichage des labels
         affichageLancerChasse()
+        // taille de la cible
+        if UIDevice.current.orientation.isPortrait {
+            pileG.axis = .vertical
+        } else {
+            pileG.axis = .horizontal
+        }
         
-        cible.miseEnPlace()
+        //cible.miseEnPlace()
+        
+        let slargeur = self.view.frame.width - self.view.safeAreaInsets.left - self.view.safeAreaInsets.right
+        let shauteur = self.view.frame.height - self.view.safeAreaInsets.top - self.view.safeAreaInsets.bottom
+        //let largeur = self.pileG.frame.size.width
+        //let hauteur = self.pileG.frame.size.height
+        //let tailleCible = min(largeur, hauteur)
+        let sizeTailleCible = min(slargeur, shauteur)
+        self.cible.frame.size = CGSize(width: sizeTailleCible, height: sizeTailleCible)
+        //self.cible.imageView.frame = CGRect(x: 0, y: 0, width: sizeTailleCible, height: sizeTailleCible)
+        cible.miseAJourTaille()
+        //-------
+        
+        //cible.miseEnPlace()
         
     }
     
@@ -123,7 +169,8 @@ class PlayViewController: UIViewController, AVAudioPlayerDelegate {
             //let tailleCible = min(largeur, hauteur)
             let sizeTailleCible = min(slargeur, shauteur)
             self.cible.frame.size = CGSize(width: sizeTailleCible, height: sizeTailleCible)
-            self.cible.imageView.frame = CGRect(x: 0, y: 0, width: sizeTailleCible, height: sizeTailleCible)
+            //self.cible.imageView.frame = CGRect(x: 0, y: 0, width: sizeTailleCible, height: sizeTailleCible)
+            self.cible.miseAJourTaille()
             //print("Size = \(size.width) de large")
             //print("Pile : \(self.pileG.bounds), cible : \(sizeTailleCible)")
         }, completion: nil)
@@ -151,7 +198,9 @@ class PlayViewController: UIViewController, AVAudioPlayerDelegate {
             recherche = (modele?.setObjectif())!
         }
         //cible.partieGagnee(nombreDeTaps: 3, apparitions: 3)
-        cible.afficheMessage(titre: "Attention", messge: "Chasser le mot ci-dessous : \n \n\(recherche)")
+        let titre = NSLocalizedString("Warning !", comment: "Attention")
+        let message = NSLocalizedString("Catch this word", comment: "Chasser le mot ci-dessous") + "\n \n\(recherche)"
+        cible.afficheMessage(titre: titre, messge: message)
         
         // on donne l'instruction de lancement
         ui_lancement.isHidden = false
@@ -285,13 +334,13 @@ class PlayViewController: UIViewController, AVAudioPlayerDelegate {
     
     // Gestion des affichages des labels
     func affichageLancerChasse(){
-        ui_invite.text = "tape le Bumper..."
-        ui_lancement.text = "pour lancer une chasse"
+        ui_invite.text = NSLocalizedString("Catch le Bumper...", comment: "tape le Bumper...")
+        ui_lancement.text = NSLocalizedString("to hunt the word...", comment: "pour lancer une chasse")
     }
     
     func affichageChasseEnCours()  {
-        ui_invite.text = "tape la cible..."
-        ui_lancement.text = "quand tu vois le gibier"
+        ui_invite.text = NSLocalizedString("Catch le target...", comment: "Tape la cible...")
+        ui_lancement.text = NSLocalizedString("when you see the word...", comment: "quand tu vois le gibier")
     }
 
     

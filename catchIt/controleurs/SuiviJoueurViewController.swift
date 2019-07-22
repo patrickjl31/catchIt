@@ -22,7 +22,7 @@ class SuiviJoueurViewController: UIViewController, UITableViewDelegate, UITableV
 
         // Do any additional setup after loading the view.
         if let joueur = leJoueur{
-            ui_labelTitre.text = "Les parties jouées par \(joueur.nom)"
+            ui_labelTitre.text = NSLocalizedString("Games played by", comment: "Les parties jouées par") + " \(joueur.nom)"
         }
         joueurTableView.dataSource = self
         joueurTableView.delegate = self
@@ -79,15 +79,15 @@ class SuiviJoueurViewController: UIViewController, UITableViewDelegate, UITableV
             fDateJourFormat.dateFormat = "dd MMMM yy"
             let fDateHeureFormat = DateFormatter()
             fDateHeureFormat.dateFormat = "HH:mm:ss"
-            laDate = "Le " + fDateJourFormat.string(from: datePartie ) + " à " + fDateHeureFormat.string(from: datePartie)
-            lesInfos = "Chasse de \" \(motATrouver)\" ,"
+            laDate = NSLocalizedString("The ", comment: "Le ") + fDateJourFormat.string(from: datePartie ) + NSLocalizedString("at ", comment: "à ")  + fDateHeureFormat.string(from: datePartie)
+            lesInfos = NSLocalizedString("Hunt of ", comment: "Chasse de ")  + "\(motATrouver)\" ,"
             if resPartie.succes {
                 if resPartie.nombreDeTaps > 1{
                     pluriel = "s"
                 }
-                lesInfos += " trouvé en \(resPartie.nombreDeTaps) coup" + pluriel + "."
+                lesInfos += NSLocalizedString("Catched with ", comment: "Trouvé en ") + "\(resPartie.nombreDeTaps) tap" + pluriel + "."
             } else {
-                lesInfos += " raté..."
+                lesInfos += NSLocalizedString("Missed... ", comment: " Raté...")
             }
             //print(lesInfos)
         }
