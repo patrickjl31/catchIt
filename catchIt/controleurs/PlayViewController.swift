@@ -164,9 +164,7 @@ class PlayViewController: UIViewController, AVAudioPlayerDelegate {
             //let largeur = view.safeAreaInsets.
             let slargeur = size.width - self.view.safeAreaInsets.left - self.view.safeAreaInsets.right
             let shauteur = size.height - self.view.safeAreaInsets.top - self.view.safeAreaInsets.bottom
-            //let largeur = self.pileG.frame.size.width
-            //let hauteur = self.pileG.frame.size.height
-            //let tailleCible = min(largeur, hauteur)
+            
             let sizeTailleCible = min(slargeur, shauteur)
             self.cible.frame.size = CGSize(width: sizeTailleCible, height: sizeTailleCible)
             //self.cible.imageView.frame = CGRect(x: 0, y: 0, width: sizeTailleCible, height: sizeTailleCible)
@@ -223,7 +221,9 @@ class PlayViewController: UIViewController, AVAudioPlayerDelegate {
                 }
                 nombreDeTaps += 1
                 //ui_lancement.isHidden = true
-                if (modele?.isCatched())! {
+                // vérifier au moins un tap
+                if nombreDeTaps > 0,
+                    (modele?.isCatched())! {
                     timer1.invalidate()
                     partieGagnee()
                     cycleDeJeuEnclanche = false
@@ -336,10 +336,11 @@ class PlayViewController: UIViewController, AVAudioPlayerDelegate {
     func affichageLancerChasse(){
         ui_invite.text = NSLocalizedString("Catch le Bumper...", comment: "tape le Bumper...")
         ui_lancement.text = NSLocalizedString("to hunt the word...", comment: "pour lancer une chasse")
+        nombreDeTaps = -1
     }
     
     func affichageChasseEnCours()  {
-        ui_invite.text = NSLocalizedString("Catch le target...", comment: "Tape la cible...")
+        ui_invite.text = NSLocalizedString("Catch the target...", comment: "Tape la cible...")
         ui_lancement.text = NSLocalizedString("when you see the word...", comment: "quand tu vois le gibier")
     }
 

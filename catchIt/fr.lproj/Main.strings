@@ -1,0 +1,72 @@
+
+/* Class = "UILabel"; text = "Language : "; ObjectID = "2KV-Xb-KEi"; */
+"2KV-Xb-KEi.text" = "Langue : ";
+
+/* Class = "UILabel"; text = "Level :"; ObjectID = "3CB-oa-Mjm"; */
+"3CB-oa-Mjm.text" = "Niveau :";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "4vh-3b-bU3"; */
+"4vh-3b-bU3.text" = "Titre";
+
+/* Class = "UISegmentedControl"; 5Jm-xa-i45.segmentTitles[0] = "Slow"; ObjectID = "5Jm-xa-i45"; */
+"5Jm-xa-i45.segmentTitles[0]" = "Lent";
+
+/* Class = "UISegmentedControl"; 5Jm-xa-i45.segmentTitles[1] = "Medium"; ObjectID = "5Jm-xa-i45"; */
+"5Jm-xa-i45.segmentTitles[1]" = "Moyen";
+
+/* Class = "UISegmentedControl"; 5Jm-xa-i45.segmentTitles[2] = "Quick"; ObjectID = "5Jm-xa-i45"; */
+"5Jm-xa-i45.segmentTitles[2]" = "Rapide";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "6Ox-8y-NgD"; */
+"6Ox-8y-NgD.text" = "Etiquette";
+
+/* Class = "UISegmentedControl"; 6UL-Yb-qg4.segmentTitles[0] = "French"; ObjectID = "6UL-Yb-qg4"; */
+"6UL-Yb-qg4.segmentTitles[0]" = "Français";
+
+/* Class = "UISegmentedControl"; 6UL-Yb-qg4.segmentTitles[1] = "English"; ObjectID = "6UL-Yb-qg4"; */
+"6UL-Yb-qg4.segmentTitles[1]" = "Anglais";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "70S-CY-JX3"; */
+"70S-CY-JX3.text" = "Titre";
+
+/* Class = "UILabel"; text = "Subtitle"; ObjectID = "Azs-7a-XLB"; */
+"Azs-7a-XLB.text" = "Soustitre";
+
+/* Class = "UIButton"; normalTitle = "OK"; ObjectID = "IbH-r3-ppc"; */
+"IbH-r3-ppc.normalTitle" = "OK";
+
+/* Class = "UILabel"; text = "to hunt a word"; ObjectID = "QDd-z8-Opj"; */
+"QDd-z8-Opj.text" = "pour attraper un mot";
+
+/* Class = "UILabel"; text = "Tap the bumper..."; ObjectID = "QM3-hK-0Xq"; */
+"QM3-hK-0Xq.text" = "Tape le bumper...";
+
+/* Class = "UITextView"; text = "Catch’It est un jeu éducatif destiné à améliorer les capacités de lecture rapide d’un lecteur. \nPour jouer, l’utilisateur doit s’identifier en tapant son nom ou en le choisissant dans la liste des joueurs inscrits. Il peut alors entrer dans le jeu en ouvrant le logo Catch’It.\n\nPour jouer une partie, tapez le Bumper !!! Catch’It propose d’attraper un mot qu’il présente puis, il montre toutes les secondes un mot de même longueur pendant un temps très court. Lorsque vous voyez le mot recherché, tapez la cible !!!\n\nCatch’it mémorise votre partie (le mot cherché, en combien d’essais, à quel moment) ainsi, vous pourrez suivre à tout moment vos progrès.\n\nCatch’It s’inspire d’exercices de lecture rapide, en particuliers ceux proposés par l’AFL (Association Française pour la Lecture) et les travaux de Jean Foucambert et Evelyne Charmeux (chercheurs à l’INRP).\n"; ObjectID = "T8S-TU-uGE"; */
+"T8S-TU-uGE.text" = "Catch’It est un jeu éducatif destiné à améliorer les capacités de lecture rapide d’un lecteur. \nPour jouer, l’utilisateur doit s’identifier en tapant son nom ou en le choisissant dans la liste des joueurs inscrits. Il peut alors entrer dans le jeu en ouvrant le logo Catch’It.\n\nPour jouer une partie, tapez le Bumper !!! Catch’It propose d’attraper un mot qu’il présente puis, il montre toutes les secondes un mot de même longueur pendant un temps très court. Lorsque vous voyez le mot recherché, tapez la cible !!!\n\nCatch’it mémorise votre partie (le mot cherché, en combien d’essais, à quel moment) ainsi, vous pourrez suivre à tout moment vos progrès.\n\nCatch’It s’inspire d’exercices de lecture rapide, en particuliers ceux proposés par l’AFL (Association Française pour la Lecture) et les travaux de Jean Foucambert et Evelyne Charmeux (chercheurs à l’INRP).\n";
+
+/* Class = "UIBarButtonItem"; title = "Info"; ObjectID = "Tn9-e0-U6O"; */
+"Tn9-e0-U6O.title" = "Info";
+
+/* Class = "UIButton"; normalTitle = "OK"; ObjectID = "UHf-qk-R1V"; */
+"UHf-qk-R1V.normalTitle" = "OK";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "XUy-8j-Tum"; */
+"XUy-8j-Tum.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Speed :"; ObjectID = "YoF-u2-omF"; */
+"YoF-u2-omF.text" = "Vitesse :";
+
+/* Class = "UILabel"; text = "Detail"; ObjectID = "aox-dp-pTm"; */
+"aox-dp-pTm.text" = "Detail";
+
+/* Class = "UILabel"; text = "Settings"; ObjectID = "iyo-FQ-NJi"; */
+"iyo-FQ-NJi.text" = "Réglages";
+
+/* Class = "UILabel"; text = "Who is playing ?"; ObjectID = "lFJ-ia-7rj"; */
+"lFJ-ia-7rj.text" = "A qui de jouer ?";
+
+/* Class = "UINavigationItem"; title = "Catch'It... Catch words..."; ObjectID = "tge-wc-LUf"; */
+"tge-wc-LUf.title" = "Catch'It... Attrape le mpt...";
+
+/* Class = "UILabel"; text = "Catch'It"; ObjectID = "xyv-s0-ET2"; */
+"xyv-s0-ET2.text" = "Catch'It";

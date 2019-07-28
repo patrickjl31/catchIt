@@ -1,0 +1,37 @@
+/* 
+  Localizable.strings
+  catchIt
+
+  Created by patrick lanneau on 27/07/2019.
+  Copyright © 2019 patrick lanneau. All rights reserved.
+*/
+"Find !" = "Trouvé !"
+"With " = "Avec "
+"The word appeared" = "Le mot est apparu"
+" once" = " une fois"
+" times" = " fois"
+"Game lost !" = "Partie perdue !"
+"Words of length" = "Mots de longueur"
+"Warning" = "Attention"
+"the word you will have to hunt will appear 1 second!" = "le mot que tu vas devoir chasser va apparaitre 1 seconde!"
+"Games played by" = "Les parties jouées par"
+"Hunt of " = "Chasse de "
+"Catched with " = "Trouvé en "
+"Missed... " = " Raté...")
+"The " = "Le "
+"at " = "à "
+"Catch the bumper, " = "Tape le Bumper, "
+"Warning !" = "Attention"
+"Catch this word" = "Chasser le mot ci-dessous"
+"Catch le Bumper..." = "Tape le Bumper..."
+"to hunt the word..." = "pour lancer une chasse"
+"Catch the target..." = "Tape la cible..."
+"when you see the word..." = "quand tu vois le mot..."
+"Level" = "Niveau"
+"Speed : " = "Niveau : "
+"it's your play..." = "c'est toi qui joue..."
+"hunt" = "chasse"
+"Delete player" = "Supprimer ce joueur"
+"Do you really want to delete ?" = "Voulez-vous réellement le supprimer ?"
+"Yes" = "Oui"
+"No" = "Non"
