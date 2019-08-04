@@ -49,13 +49,7 @@ class GestionViewController: UIViewController, UITableViewDelegate, UITableViewD
         // Do any additional setup after loading the view.
         // Ouvrir la base modele
         //baseJeu = GestionFiles()
-        
-        // La langue
-        if Locale.current.languageCode == "en" {
-            idiome = .Eng
-        } else {
-            idiome = .Fr
-        }
+       
         //On gère l'orientation
         if UIDevice.current.orientation.isPortrait {
             pileGenerale.axis = .vertical
@@ -68,9 +62,6 @@ class GestionViewController: UIViewController, UITableViewDelegate, UITableViewD
         tablePlayers.dataSource = self
         // Le nom
         nameField.delegate = self
-        
-        //les réglages par défaut
-        gestionAffichageParametres()
         
         // L'activation de l'image catch'It
         let tap = UITapGestureRecognizer(target: self, action: #selector(toCatchIt(_:)))
@@ -85,7 +76,6 @@ class GestionViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.navigationController?.navigationBar.titleTextAttributes = [.font: FONT_DE_BASE as Any, .foregroundColor: ROUGE]
         //self.navigationController?.navigationBar.tintColor = GRIS_TRES_CLAIR
         //self.navigationController?.navigationBar.barTintColor = GRIS_TRES_FONCE
-        
         
         //le bouton
         /*
@@ -115,6 +105,13 @@ class GestionViewController: UIViewController, UITableViewDelegate, UITableViewD
         navigationItem.rightBarButtonItems = [UIBarButtonItem(customView: ballButton), btnAbout]
         
         // On met à jour la table
+        // La langue
+        if Locale.current.languageCode == "en" {
+            idiome = .Eng
+        } else {
+            idiome = .Fr
+        }
+        baseJeu.setLanguage(idiome: idiome)
         tablePlayers.reloadData()
         //On gère l'orientation
         if UIDevice.current.orientation.isPortrait {
@@ -122,6 +119,8 @@ class GestionViewController: UIViewController, UITableViewDelegate, UITableViewD
         } else {
             pileGenerale.axis = .horizontal
         }
+        //les réglages par défaut
+        gestionAffichageParametres()
         
     }
     
@@ -219,16 +218,14 @@ class GestionViewController: UIViewController, UITableViewDelegate, UITableViewD
             segmentedSpeed.selectedSegmentIndex = 1
         case .rapide:
             segmentedSpeed.selectedSegmentIndex = 2
-        default:
-            segmentedSpeed.selectedSegmentIndex = 0
+        
         }
         switch idiome {
         case .Fr:
             choixLangue.selectedSegmentIndex = 0
         case .Eng:
             choixLangue.selectedSegmentIndex = 1
-        default:
-            choixLangue.selectedSegmentIndex = 0
+        
         }
         
     }
@@ -368,6 +365,7 @@ class GestionViewController: UIViewController, UITableViewDelegate, UITableViewD
         /* */
         if segue.identifier == ABOUT{
             if let vc = segue.destination as? AboutViewController {
+                vc.idiome = self.idiome
                 /*
                 if let pvc = vc.popoverPresentationController {
                     pvc.delegate = self

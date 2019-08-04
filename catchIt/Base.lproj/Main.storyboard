@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BZM-us-beG">
-    <device id="retina4_7" orientation="portrait">
+    <device id="ipad10_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -19,28 +19,32 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="justified" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T8S-TU-uGE">
-                                <rect key="frame" x="5" y="80" width="290" height="270"/>
+                                <rect key="frame" x="5" y="100" width="290" height="250"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <string key="text">Catch’It est un jeu éducatif destiné à améliorer les capacités de lecture rapide d’un lecteur. 
-Pour jouer, l’utilisateur doit s’identifier en tapant son nom ou en le choisissant dans la liste des joueurs inscrits. Il peut alors entrer dans le jeu en ouvrant le logo Catch’It.
+                                <mutableString key="text">Catch'It is an educational game designed to improve the reading skills of a reader.
+To play, the user must identify himself by typing his name or by choosing him from the list of registered players. He can then enter the game by opening the Catch'It logo.
 
-Pour jouer une partie, tapez le Bumper !!! Catch’It propose d’attraper un mot qu’il présente puis, il montre toutes les secondes un mot de même longueur pendant un temps très court. Lorsque vous voyez le mot recherché, tapez la cible !!!
+To play a game, type the Bumper !!! Catch'It proposes to catch a word that he presents then, he shows every second a word of the same length for a very short time. When you see the search word, type the target !!!
 
-Catch’it mémorise votre partie (le mot cherché, en combien d’essais, à quel moment) ainsi, vous pourrez suivre à tout moment vos progrès.
+Catch'it memorizes your play (the word sought, how many trials, when) so you can follow your progress at any time.
 
-Catch’It s’inspire d’exercices de lecture rapide, en particuliers ceux proposés par l’AFL (Association Française pour la Lecture) et les travaux de Jean Foucambert et Evelyne Charmeux (chercheurs à l’INRP).
-</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+Catch'It is inspired by rapid reading exercises, in particular those offered by the AFL (Association Française pour la Lecture) and the researches of Jean Foucambert and Evelyne Charmeux (researchers at the NPRI).
+
+</mutableString>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Catch'It" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xyv-s0-ET2">
-                                <rect key="frame" x="0.0" y="5" width="300" height="51"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Catch'It" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="24" translatesAutoresizingMaskIntoConstraints="NO" id="xyv-s0-ET2">
+                                <rect key="frame" x="0.0" y="25" width="300" height="54"/>
                                 <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="40"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" red="0.79885525170000005" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
+                                <color key="shadowColor" red="0.78431372549019607" green="0.78431372549019607" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <size key="shadowOffset" width="3" height="3"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UHf-qk-R1V">
-                                <rect key="frame" x="8" y="360" width="284" height="30"/>
+                                <rect key="frame" x="8" y="357" width="284" height="33"/>
+                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="17"/>
                                 <state key="normal" title="OK"/>
                                 <connections>
                                     <action selector="actionOK:" destination="pXe-3c-b7g" eventType="touchUpInside" id="LjI-M4-guO"/>
@@ -82,15 +86,15 @@ Catch’It s’inspire d’exercices de lecture rapide, en particuliers ceux pro
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KTp-ox-hj6">
-                                <rect key="frame" x="16" y="85" width="268" height="445"/>
+                                <rect key="frame" x="16" y="85" width="268" height="439"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="IMe-k0-Udz">
-                                <rect key="frame" x="20" y="105" width="260" height="405"/>
+                                <rect key="frame" x="20" y="105" width="260" height="399"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="separatorColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellPartie" textLabel="70S-CY-JX3" detailTextLabel="Azs-7a-XLB" style="IBUITableViewCellStyleSubtitle" id="Xec-UV-ad5">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellPartie" textLabel="70S-CY-JX3" detailTextLabel="Azs-7a-XLB" style="IBUITableViewCellStyleSubtitle" id="Xec-UV-ad5">
                                         <rect key="frame" x="0.0" y="28" width="260" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Xec-UV-ad5" id="xP8-Ce-QhL">
@@ -116,18 +120,21 @@ Catch’It s’inspire d’exercices de lecture rapide, en particuliers ceux pro
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Ox-8y-NgD">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="6Ox-8y-NgD">
                                 <rect key="frame" x="0.0" y="20" width="300" height="45"/>
                                 <color key="backgroundColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="AHf-9P-55Z"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="30"/>
+                                <color key="textColor" red="0.92014357219999998" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
+                                <color key="shadowColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <size key="shadowOffset" width="2" height="2"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IbH-r3-ppc">
-                                <rect key="frame" x="16" y="550" width="268" height="30"/>
+                                <rect key="frame" x="16" y="544" width="268" height="36"/>
+                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="20"/>
                                 <state key="normal" title="OK"/>
                                 <connections>
                                     <action selector="OKAction:" destination="Gro-yh-clJ" eventType="touchUpInside" id="jpU-Se-e7r"/>
@@ -170,26 +177,41 @@ Catch’It s’inspire d’exercices de lecture rapide, en particuliers ceux pro
             <objects>
                 <viewController id="pYg-Gj-U3Z" customClass="GestionViewController" customModule="catchIt" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eVl-KC-5bH">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="834" height="1112"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="qMb-iy-er7">
-                                <rect key="frame" x="16" y="64" width="343" height="603"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cible4" translatesAutoresizingMaskIntoConstraints="NO" id="Iph-kO-f4R">
+                                <rect key="frame" x="0.0" y="70" width="834" height="1042"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="qMb-iy-er7">
+                                <rect key="frame" x="16" y="70" width="802" height="1042"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="uwK-f4-N8G">
-                                        <rect key="frame" x="0.0" y="0.0" width="343" height="297.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="802" height="513"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iyo-FQ-NJi">
-                                                <rect key="frame" x="135" y="0.0" width="73.5" height="30"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Settings " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="iyo-FQ-NJi">
+                                                <rect key="frame" x="325.5" y="0.0" width="151.5" height="30"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="nVx-OF-Doz"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="17"/>
+                                                <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="28"/>
                                                 <color key="textColor" red="0.92014357219999998" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <nil key="highlightedColor"/>
+                                                <color key="shadowColor" white="0.75" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <size key="shadowOffset" width="3" height="2"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="20"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                             </label>
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="6" minValue="3" maxValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="oD4-8E-4VE">
-                                                <rect key="frame" x="-2" y="42" width="347" height="31"/>
+                                                <rect key="frame" x="-2" y="42" width="806" height="31"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="R7Y-ub-SeI"/>
                                                 </constraints>
@@ -197,27 +219,29 @@ Catch’It s’inspire d’exercices de lecture rapide, en particuliers ceux pro
                                                     <action selector="levelSliderAction:" destination="pYg-Gj-U3Z" eventType="valueChanged" id="7qi-Vu-WNA"/>
                                                 </connections>
                                             </slider>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Level :" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3CB-oa-Mjm">
-                                                <rect key="frame" x="131.5" y="84" width="80" height="21"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Level :" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="3CB-oa-Mjm">
+                                                <rect key="frame" x="368" y="84" width="66.5" height="21"/>
+                                                <color key="backgroundColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.92004432579999995" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="21" id="j6a-oJ-A6o"/>
-                                                    <constraint firstAttribute="width" constant="80" id="vtU-xQ-3Ju"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="XB7-8h-poO">
-                                                <rect key="frame" x="0.0" y="117" width="343" height="20.5"/>
+                                                <rect key="frame" x="204" y="117" width="394" height="29"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Speed :" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YoF-u2-omF">
-                                                        <rect key="frame" x="0.0" y="0.0" width="165.5" height="20.5"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Speed :" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="YoF-u2-omF">
+                                                        <rect key="frame" x="0.0" y="0.0" width="191" height="29"/>
+                                                        <color key="backgroundColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.92004432579999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="5Jm-xa-i45">
-                                                        <rect key="frame" x="177.5" y="0.5" width="165.5" height="21"/>
+                                                    <segmentedControl opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="5Jm-xa-i45">
+                                                        <rect key="frame" x="203" y="4.5" width="191" height="21"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="20" id="HTx-A0-M31"/>
                                                         </constraints>
@@ -232,17 +256,19 @@ Catch’It s’inspire d’exercices de lecture rapide, en particuliers ceux pro
                                                     </segmentedControl>
                                                 </subviews>
                                             </stackView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="6Rk-GB-TWf">
-                                                <rect key="frame" x="0.0" y="149.5" width="343" height="28"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="6Rk-GB-TWf">
+                                                <rect key="frame" x="274.5" y="158" width="253" height="29"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Language : " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2KV-Xb-KEi">
-                                                        <rect key="frame" x="0.0" y="0.0" width="89.5" height="28"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Language : " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="2KV-Xb-KEi">
+                                                        <rect key="frame" x="0.0" y="0.0" width="120.5" height="29"/>
+                                                        <color key="backgroundColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.92004432579999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="6UL-Yb-qg4">
-                                                        <rect key="frame" x="226" y="0.0" width="117" height="29"/>
+                                                    <segmentedControl opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="6UL-Yb-qg4">
+                                                        <rect key="frame" x="132.5" y="0.5" width="120.5" height="29"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <segments>
                                                             <segment title="French"/>
                                                             <segment title="English"/>
@@ -254,31 +280,30 @@ Catch’It s’inspire d’exercices de lecture rapide, en particuliers ceux pro
                                                 </subviews>
                                             </stackView>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="catchit5" translatesAutoresizingMaskIntoConstraints="NO" id="i6i-Vo-rIV">
-                                                <rect key="frame" x="0.0" y="189.5" width="343" height="108"/>
+                                                <rect key="frame" x="0.0" y="199" width="802" height="314"/>
                                             </imageView>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstItem="6Rk-GB-TWf" firstAttribute="leading" secondItem="uwK-f4-N8G" secondAttribute="leading" id="gNj-96-k8h"/>
                                             <constraint firstAttribute="trailing" secondItem="oD4-8E-4VE" secondAttribute="trailing" id="ga4-tb-po3"/>
-                                            <constraint firstAttribute="trailing" secondItem="6Rk-GB-TWf" secondAttribute="trailing" id="j3S-Tz-zzb"/>
                                             <constraint firstItem="oD4-8E-4VE" firstAttribute="leading" secondItem="uwK-f4-N8G" secondAttribute="leading" id="r69-KE-CdC"/>
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="SZI-OP-3L7">
-                                        <rect key="frame" x="0.0" y="305.5" width="343" height="297.5"/>
+                                        <rect key="frame" x="0.0" y="529" width="802" height="513"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="xLJ-5r-C7S">
-                                                <rect key="frame" x="0.0" y="0.0" width="343" height="30"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="802" height="30"/>
                                                 <subviews>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5fK-xU-XvU">
-                                                        <rect key="frame" x="0.0" y="0.0" width="305" height="30"/>
-                                                        <color key="backgroundColor" red="0.96681513789999995" green="1" blue="0.86606785860000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <textField opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5fK-xU-XvU">
+                                                        <rect key="frame" x="0.0" y="0.0" width="764" height="30"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="textColor"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                         <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES" textContentType="name"/>
                                                     </textField>
-                                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OFg-JX-D6h">
-                                                        <rect key="frame" x="321" y="0.0" width="22" height="30"/>
+                                                    <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OFg-JX-D6h">
+                                                        <rect key="frame" x="780" y="0.0" width="22" height="30"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <connections>
                                                             <action selector="addPlayer:" destination="pYg-Gj-U3Z" eventType="touchUpInside" id="Njs-fP-FHU"/>
                                                         </connections>
@@ -286,36 +311,39 @@ Catch’It s’inspire d’exercices de lecture rapide, en particuliers ceux pro
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Tez-aG-XJe">
-                                                <rect key="frame" x="0.0" y="46" width="343" height="251.5"/>
+                                                <rect key="frame" x="0.0" y="46" width="802" height="467"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Who is playing ?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lFJ-ia-7rj">
-                                                        <rect key="frame" x="0.0" y="0.0" width="159.5" height="66"/>
-                                                        <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="26"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Who is playing ?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lFJ-ia-7rj">
+                                                        <rect key="frame" x="0.0" y="0.0" width="389" height="46"/>
+                                                        <color key="backgroundColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.92004432579999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="34"/>
                                                         <color key="textColor" red="0.92014357219999998" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
+                                                        <color key="shadowColor" white="0.75" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <size key="shadowOffset" width="3" height="3"/>
                                                     </label>
                                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="AID-ej-Dck">
-                                                        <rect key="frame" x="179.5" y="0.0" width="163.5" height="245"/>
+                                                        <rect key="frame" x="409" y="0.0" width="393" height="331"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <prototypes>
                                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="detailDisclosureButton" indentationWidth="10" reuseIdentifier="nameCell" textLabel="4vh-3b-bU3" detailTextLabel="aox-dp-pTm" style="IBUITableViewCellStyleSubtitle" id="6CV-Cb-XE4">
-                                                                <rect key="frame" x="0.0" y="28" width="163.5" height="44"/>
+                                                                <rect key="frame" x="0.0" y="28" width="393" height="44"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6CV-Cb-XE4" id="fCE-He-2cz">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="96.5" height="43.5"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="326" height="43.5"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <subviews>
-                                                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4vh-3b-bU3">
-                                                                            <rect key="frame" x="15" y="5" width="33.5" height="20.5"/>
+                                                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" id="4vh-3b-bU3">
+                                                                            <rect key="frame" x="15" y="-2" width="44.5" height="29"/>
                                                                             <autoresizingMask key="autoresizingMask"/>
-                                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                            <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
-                                                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="aox-dp-pTm">
-                                                                            <rect key="frame" x="15" y="25.5" width="33" height="14.5"/>
+                                                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" id="aox-dp-pTm">
+                                                                            <rect key="frame" x="15" y="27" width="41.5" height="19.5"/>
                                                                             <autoresizingMask key="autoresizingMask"/>
-                                                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
@@ -338,14 +366,18 @@ Catch’It s’inspire d’exercices de lecture rapide, en particuliers ceux pro
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="qMb-iy-er7" secondAttribute="trailing" constant="16" id="8vh-3n-hMh"/>
+                            <constraint firstItem="Iph-kO-f4R" firstAttribute="leading" secondItem="eVl-KC-5bH" secondAttribute="leading" id="9Cd-vy-1yA"/>
                             <constraint firstItem="qMb-iy-er7" firstAttribute="top" secondItem="teF-IY-7Sg" secondAttribute="top" id="M4d-nP-rlG"/>
+                            <constraint firstAttribute="trailing" secondItem="Iph-kO-f4R" secondAttribute="trailing" id="fDk-P9-C5v"/>
                             <constraint firstAttribute="bottom" secondItem="qMb-iy-er7" secondAttribute="bottom" id="jyb-o8-85f"/>
+                            <constraint firstAttribute="bottom" secondItem="Iph-kO-f4R" secondAttribute="bottom" id="khW-RT-JI6"/>
                             <constraint firstItem="qMb-iy-er7" firstAttribute="leading" secondItem="teF-IY-7Sg" secondAttribute="leading" constant="16" id="nk2-Nr-UW9"/>
+                            <constraint firstItem="Iph-kO-f4R" firstAttribute="top" secondItem="teF-IY-7Sg" secondAttribute="top" id="s76-gh-Qd8"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="teF-IY-7Sg"/>
                     </view>
                     <navigationItem key="navigationItem" title="Catch'It... Catch words..." id="tge-wc-LUf">
-                        <barButtonItem key="rightBarButtonItem" title="Info" style="plain" id="Tn9-e0-U6O">
+                        <barButtonItem key="rightBarButtonItem" title="Info" id="Tn9-e0-U6O">
                             <connections>
                                 <segue destination="pXe-3c-b7g" kind="popoverPresentation" identifier="viewAbout" popoverAnchorBarButtonItem="Tn9-e0-U6O" id="5Yb-cv-Nz6">
                                     <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
@@ -383,26 +415,26 @@ Catch’It s’inspire d’exercices de lecture rapide, en particuliers ceux pro
             <objects>
                 <viewController storyboardIdentifier="PlayViewController" id="4re-gU-Pan" customClass="PlayViewController" customModule="catchIt" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="F6y-q3-oPP">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="834" height="1112"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="e6z-AK-dqM">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="70" width="834" height="1042"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Gzp-Ka-Cmp">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="213"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="834" height="193"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap the bumper..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QM3-hK-0Xq">
-                                                <rect key="frame" x="93" y="0.0" width="189" height="30"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap the bumper..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="QM3-hK-0Xq">
+                                                <rect key="frame" x="252" y="0.0" width="330.5" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="CXU-yf-m1h"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="20"/>
+                                                <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="35"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XUy-8j-Tum">
-                                                <rect key="frame" x="137.5" y="35" width="100" height="100"/>
+                                                <rect key="frame" x="367" y="35" width="100" height="100"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="XUy-8j-Tum" secondAttribute="height" multiplier="1:1" id="Wz2-bg-dmJ"/>
                                                     <constraint firstAttribute="height" constant="100" id="fm6-8j-ey4"/>
@@ -413,17 +445,17 @@ Catch’It s’inspire d’exercices de lecture rapide, en particuliers ceux pro
                                                     <action selector="startAction:" destination="4re-gU-Pan" eventType="touchUpInside" id="jbP-BD-dJh"/>
                                                 </connections>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="to hunt a word" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QDd-z8-Opj">
-                                                <rect key="frame" x="101" y="140" width="173" height="30"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="to hunt a word" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="QDd-z8-Opj">
+                                                <rect key="frame" x="265.5" y="140" width="303" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="ffx-qG-izS"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="20"/>
+                                                <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="35"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YJd-17-tPM">
-                                                <rect key="frame" x="162.5" y="175" width="50" height="38"/>
+                                                <rect key="frame" x="392" y="175" width="50" height="18"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -431,7 +463,7 @@ Catch’It s’inspire d’exercices de lecture rapide, en particuliers ceux pro
                                         </subviews>
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fod-DL-Fyw" customClass="CibleView" customModule="catchIt" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="228" width="375" height="375"/>
+                                        <rect key="frame" x="0.0" y="208" width="834" height="834"/>
                                         <color key="backgroundColor" red="0.96681513789999995" green="1" blue="0.86606785860000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="Fod-DL-Fyw" secondAttribute="height" multiplier="1:1" id="0zl-Vc-Fqd"/>
@@ -466,7 +498,7 @@ Catch’It s’inspire d’exercices de lecture rapide, en particuliers ceux pro
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="BZM-us-beG" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="DOU-Rw-QC4">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="834" height="50"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
@@ -489,5 +521,6 @@ Catch’It s’inspire d’exercices de lecture rapide, en particuliers ceux pro
     <resources>
         <image name="buzzer-2" width="638" height="624"/>
         <image name="catchit5" width="5484" height="4500"/>
+        <image name="cible4" width="500" height="500"/>
     </resources>
 </document>

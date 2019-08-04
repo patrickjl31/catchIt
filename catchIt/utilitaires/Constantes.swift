@@ -9,8 +9,9 @@
 import Foundation
 import  UIKit
 
-let FONT_DE_BASE = UIFont(name: "Chalkduster", size: 15)
-let FONT_TITRE = UIFont(name: "Chalkduster", size: 20)
+let FONT_DE_BASE = UIFont(name: "Chalkduster", size: 30)
+let FONT_PETIT = UIFont(name: "Chalkduster", size: 20)
+let FONT_TITRE = UIFont(name: "Chalkduster", size: 34)
 
 
 

@@ -1,0 +1,68 @@
+/* 
+  Localizable.strings
+  catchIt
+
+  Created by patrick lanneau on 27/07/2019.
+  Copyright © 2019 patrick lanneau. All rights reserved.
+*/
+/*
+"Find !" = "Find !";
+
+"With " = "With ";
+
+"The word appeared" = "The word appeared";
+
+" once" = " once";
+
+" times" = " times";
+
+"Game lost !" = "Game lost !";
+
+"Words of length" = "Words of length";
+
+"Warning" = "Warning";
+
+"the word you will have to hunt will appear 1 second!" = "the word you will have to hunt will appear 1 second!";
+
+"Games played by" = "Games played by";
+
+"Hunt of " = "Hunt of ";
+
+"Catched with " = "Catched with ";
+
+"Missed... " = "Missed... ");
+
+"The " = "The ";
+
+"at " = "at ";
+*/
+"Catch the bumper, " = "Catch the bumper, ";
+
+"Warning !" = "Warning !";
+
+"Catch this word" = "Catch this word";
+
+"Catch le Bumper..." = "Catch le Bumper...";
+
+"to hunt the word..." = "to hunt the word...";
+
+"Catch the target..." = "Catch the target...";
+
+"when you see the word..." = "when you see the word...";
+
+"Level" = "Level";
+
+"Speed : " = "Speed : ";
+
+"it's your play..." = "it's your play...";
+
+"hunt" = "hunt";
+
+"Delete player" = "Delete player";
+
+"Do you really want to delete ?" = "Do you really want to delete ?";
+
+"Yes" = "Yes";
+
+"No" = "No";
+

@@ -29,10 +29,10 @@ class CibleView: UIView, AVAudioPlayerDelegate {
         
         // On prépare la boite message
         messageBox = MessageView(frame: CGRect(x: 0, y: 0, width: frame.width / 2, height: frame.height / 2))
+        
         // la mouche
         laMouche = MoucheView(frame: CGRect(x: 0, y: 0, width: 130, height: 80))
        
-        
         super.init(frame: frame)
          miseEnPlace()
     }
@@ -42,7 +42,7 @@ class CibleView: UIView, AVAudioPlayerDelegate {
         // On prépare la boite message
         messageBox = MessageView(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
         // la mouche
-        laMouche = MoucheView(frame: CGRect(x: 0, y: 0, width: 130, height: 80))
+        laMouche = MoucheView(frame: CGRect(x: 0, y: 0, width: 150, height: 80))
         
         super.init(coder: aDecoder)
         messageBox.frame.size = CGSize(width: frame.width / 2, height: frame.height / 2)
@@ -51,16 +51,6 @@ class CibleView: UIView, AVAudioPlayerDelegate {
     }
     
     func miseEnPlace()  {
-        
-        //On initialise les images objets
-        //fleche = UIImageView(frame: CGRect(x: 0, y: 0, width: 200, height: 160))
-        
-        // On prépare la boite message
-        //messageBox = MessageView(frame: CGRect(x: 0, y: 0, width: frame.wi@objc dth / 2, height: frame.height / 2))
-        // la mouche
-        //laMouche = MoucheView(frame: CGRect(x: 0, y: 0, width: 130, height: 80))
-        
-        
         
         let large = self.frame.size.width
         //let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: large, height: large))
@@ -76,8 +66,9 @@ class CibleView: UIView, AVAudioPlayerDelegate {
         addSubview(imageView)
         
         //messageBox
-        
-        messageBox.frame.size = CGSize(width: self.frame.width / 2, height: self.frame.height / 2)
+        //messageBox.frame.size = CGSize(width: large / 2, height: large / 2)
+        messageBox.frame = CGRect(x: 0, y: 0, width: large / 2, height: large / 2)
+        //messageBox.frame.size = CGSize(width: self.frame.width / 2, height: self.frame.height / 2)
         // on la centre
         //messageBox.center = CGPoint(x: self.frame.width / 2, y: self.frame.height / 2)
         
@@ -88,7 +79,7 @@ class CibleView: UIView, AVAudioPlayerDelegate {
         
         //laMouche
         //laMouche = MoucheView(frame: CGRect(x: 0, y: 0, width: 130, height: 80))
-        laMouche.frame.size = CGSize(width: 130, height: 80)
+        laMouche.frame.size = CGSize(width: 150, height: 80)
         laMouche.miseEnPlace()
         laMouche.isHidden = true
         addSubview(laMouche
@@ -107,6 +98,10 @@ class CibleView: UIView, AVAudioPlayerDelegate {
     func miseAJourTaille() {
         
         imageView.frame.size = self.frame.size
+        //messageBox.frame.size.width = self.frame.size.width / 2
+        //messageBox.frame.size.height = self.frame.size.height / 2
+        //messageBox.frame.size.width = 400.0
+        //messageBox.frame.size.height = 400.0
         
 //        let largeur = imageView.frame.width
 //        let decalageX = (largeur / 4)
@@ -214,7 +209,7 @@ class CibleView: UIView, AVAudioPlayerDelegate {
         if combienTaps > 1 {
             message += "s"
         }
-        message += "\n"
+        message += ".\n"
         message += NSLocalizedString("The word appeared", comment: "Le mot est apparu")
         
         if sur == 1 {

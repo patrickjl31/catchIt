@@ -38,14 +38,14 @@ class MessageView: UIView {
         addSubview(imageView)
         
         
-        titre = UILabel(frame: CGRect(x: 10, y: (tailleCote / 4) - 15, width: frame.width - 30, height: 30))
+        titre = UILabel(frame: CGRect(x: 10, y: (tailleCote / 4) - 15, width: frame.width - 30, height: 35))
         titre?.textAlignment = .center
         titre?.font = FONT_TITRE
         titre?.textColor = GRIS_TRES_CLAIR
         guard titre != nil else {return}
         addSubview(titre!)
         
-        message = UILabel(frame: CGRect(x: 10, y: (tailleCote / 2) - 20, width: frame.width - 20, height: 80))
+        message = UILabel(frame: CGRect(x: 10, y: (tailleCote / 2) - 20, width: frame.width - 20, height: 120))
         message?.textAlignment = .center
         message?.numberOfLines = 0
         message?.font = FONT_DE_BASE
@@ -63,11 +63,12 @@ class MessageView: UIView {
         self.message?.text = complement
     }
     
+    /*
     @objc func checkAction(sender: UITapGestureRecognizer){
         //self.isHidden = true
         
     }
-    
+    */
     // Fonctions d'apparition
     
     

@@ -10,7 +10,7 @@ import UIKit
 
 class MoucheView: UIView {
 
-    var texteLabel : UILabel?
+    var texteLabel = UILabel()
     
     // Pour régler les temps d'apparition
     var timer:Timer = Timer()
@@ -38,19 +38,22 @@ class MoucheView: UIView {
         imageView.image = backImage
         addSubview(imageView)
         
-        texteLabel = UILabel(frame: CGRect(x: 5, y: (tailleCoteH / 2) - 10 , width: tailleCoteW - 10, height: 20))
-        texteLabel?.textAlignment = .center
-        texteLabel?.font = FONT_TITRE
-        texteLabel?.textColor = GRIS_TRES_CLAIR
-        guard texteLabel != nil else {
-            return
-        }
-        addSubview(texteLabel!)
+        //texteLabel = UILabel(frame: CGRect(x: 5, y: (tailleCoteH / 2) - 20 , width: tailleCoteW - 10, height: 30))
+        texteLabel.frame = CGRect(x: 5, y: (tailleCoteH / 2) - 20 , width: tailleCoteW - 10, height: 30)
+        texteLabel.minimumScaleFactor = 14.0
+        texteLabel.adjustsFontSizeToFitWidth = true
+        texteLabel.textAlignment = .center
+        texteLabel.font = FONT_PETIT
+        texteLabel.textColor = GRIS_TRES_CLAIR
+        
+        addSubview(texteLabel)
         
     }
     
     func setText(value: String) {
-        texteLabel!.text = value
+        texteLabel.minimumScaleFactor = 14.0
+        texteLabel.adjustsFontSizeToFitWidth = true
+        texteLabel.text = value
     }
     
     func setPositionCenter(x:CGFloat, y: CGFloat)  {

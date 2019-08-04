@@ -38,10 +38,12 @@ class GestionFiles {
     }
     // ---------------------
     func setNiveauSerie(value:Int) {
+        serieCourante = openwordsList(longueur: niveauSerie, idiome: langueCourante)
         niveauSerie = value
     }
     
     func  getNiveau() -> Int {
+        serieCourante = openwordsList(longueur: niveauSerie, idiome: langueCourante)
         return niveauSerie
     }
     
@@ -54,6 +56,7 @@ class GestionFiles {
     }
     
     func setLanguage(idiome:Langue) {
+        serieCourante = openwordsList(longueur: niveauSerie, idiome: langueCourante)
         langueCourante = idiome
     }
     
@@ -234,6 +237,7 @@ class GestionFiles {
         
         result = text!.components(separatedBy: "\n")
         serieCourante = result
+        //print("nomfichier : \(nomFichier), contenu : \(result)")
         return result
     }
     

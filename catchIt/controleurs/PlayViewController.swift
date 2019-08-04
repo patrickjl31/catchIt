@@ -197,7 +197,7 @@ class PlayViewController: UIViewController, AVAudioPlayerDelegate {
         }
         //cible.partieGagnee(nombreDeTaps: 3, apparitions: 3)
         let titre = NSLocalizedString("Warning !", comment: "Attention")
-        let message = NSLocalizedString("Catch this word", comment: "Chasser le mot ci-dessous") + "\n \n\(recherche)"
+        let message = NSLocalizedString("Catch this word : ", comment: "Chasser le mot ci-dessous") + "\n\(recherche)"
         cible.afficheMessage(titre: titre, messge: message)
         
         // on donne l'instruction de lancement
@@ -219,11 +219,11 @@ class PlayViewController: UIViewController, AVAudioPlayerDelegate {
                     ui_lancement.isHidden = true
                     presenterMot()
                 }
-                nombreDeTaps += 1
+                nombreDeTaps = nombreDeTaps + 1
+                //print(nombreDeTaps)
                 //ui_lancement.isHidden = true
                 // vérifier au moins un tap
-                if nombreDeTaps > 0,
-                    (modele?.isCatched())! {
+                if nombreDeTaps > 0, (modele?.isCatched())! {
                     timer1.invalidate()
                     partieGagnee()
                     cycleDeJeuEnclanche = false
@@ -300,8 +300,9 @@ class PlayViewController: UIViewController, AVAudioPlayerDelegate {
     }
     */
     func partieGagnee() {
-        bilan(avecSucces: true)
+        
         cible.partieGagnee(nombreDeTaps: nombreDeTaps, apparitions: apparitions)
+        bilan(avecSucces: true)
         /*
         cible.encocheFleche()
         var message = "Avec juste \(nombreDeTaps) tap"
@@ -315,8 +316,9 @@ class PlayViewController: UIViewController, AVAudioPlayerDelegate {
  */
     }
     func partiePerdue()  {
-        bilan(avecSucces: false)
+        
         cible.partiePerdue(nombreDeTaps: nombreDeTaps, apparitions: apparitions)
+        bilan(avecSucces: false)
         /*
         cible.afficheMessage(titre: "Perdu !", messge: "tu as essayé \(nombreDeTaps) taps, mais tu as raté le mot... apparu \(apparitions) fois")
  */

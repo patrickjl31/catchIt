@@ -60,13 +60,13 @@
 "aox-dp-pTm.text" = "Detail";
 
 /* Class = "UILabel"; text = "Settings"; ObjectID = "iyo-FQ-NJi"; */
-"iyo-FQ-NJi.text" = "Réglages";
+"iyo-FQ-NJi.text" = " Réglages ";
 
 /* Class = "UILabel"; text = "Who is playing ?"; ObjectID = "lFJ-ia-7rj"; */
 "lFJ-ia-7rj.text" = "A qui de jouer ?";
 
 /* Class = "UINavigationItem"; title = "Catch'It... Catch words..."; ObjectID = "tge-wc-LUf"; */
-"tge-wc-LUf.title" = "Catch'It... Attrape le mpt...";
+"tge-wc-LUf.title" = "Catch'It... Attrape le mot...";
 
 /* Class = "UILabel"; text = "Catch'It"; ObjectID = "xyv-s0-ET2"; */
 "xyv-s0-ET2.text" = "Catch'It";
